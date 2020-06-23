@@ -141,5 +141,5 @@ dmypy.json
 cython_debug/
 
 .env.py
-db.sqlite**
+.idea
 
