@@ -15,11 +15,11 @@ class PostAdmin(admin.ModelAdmin):
         'is_confirmed',
         'deleted',
         'date_created',
-        'date_last_update',)
+        'date_last_updated',)
     list_filter = ('first_name', 'last_name', 'phone', 'email', 'is_confirmed', 'date_created')
     search_fields = ('first_name', 'last_name', 'phone')
     date_hierarchy = 'date_created'
-    ordering = ('date_created', 'date_last_update')
+    ordering = ('date_created', 'date_last_updated')
 
 
 @admin.register(OrderUnit)

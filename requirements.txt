@@ -5,6 +5,7 @@ django-filter==2.3.0
 djangorestframework==3.11.0
 Faker==4.1.1
 model-bakery==1.1.0
+Pillow==7.1.2
 python-dateutil==2.8.1
 pytz==2020.1
 six==1.15.0
