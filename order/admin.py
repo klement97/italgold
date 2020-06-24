@@ -1,7 +1,6 @@
 from django.contrib import admin
 
-# Register your models here.
-from order.models import Order, OrderUnit, LeatherSerial, Leather, ProductCategory, Product
+from order.models import Leather, LeatherSerial, Order, OrderUnit, Product, ProductCategory
 
 
 @admin.register(Order)
