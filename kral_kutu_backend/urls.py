@@ -20,3 +20,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('order.urls'))
     ]
+
+admin.site.site_header = "KRAL KUTU Admin"
+admin.site.site_title = "KRAL KUTU Admin Portal"
+admin.site.index_title = "Welcome to KRAL KUTU Portal"
