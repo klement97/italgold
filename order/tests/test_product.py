@@ -11,6 +11,8 @@ class TestProductRetrieve(KKAPITestCase):
 
     @classmethod
     def setUpTestData(cls):
+        # Baker leaves the image field empty
+        # so we have to handle it ourselves
         leather = baker.make(Leather, image=faker.file_name())
         cls.products = baker.make(
             Product, _quantity=5, image=faker.file_name(),
@@ -18,7 +20,7 @@ class TestProductRetrieve(KKAPITestCase):
             )
 
     def setUp(self) -> None:
-        self.url = self.get_url_with_pk(view_name='product', pk=self.products[0].pk)
+        self.url = self.get_url_with_pk(view_name='product', pk=self.products[faker.random.randint(0, 4)].pk)
 
     def test_retrieve(self):
         self.retrieve_assertions(self.url)
