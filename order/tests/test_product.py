@@ -20,15 +20,20 @@ class TestProductRetrieve(KKAPITestCase):
             )
 
     def setUp(self) -> None:
-        self.url = self.get_url_with_pk(view_name='product', pk=self.products[faker.random.randint(0, 4)].pk)
+        self.url = self.get_url_with_pk(
+            view_name='product',
+            pk=self.products[faker.random.randint(0, 4)].pk
+            )
 
     def test_retrieve(self):
         self.retrieve_assertions(self.url)
 
     def test_retrieve_non_existent_product(self):
         last_pk = Product.objects.only('id').order_by('id').last().id
-        self.url = self.get_url_with_pk(view_name='product', pk=last_pk + 1)
-
+        self.url = self.get_url_with_pk(
+            view_name='product',
+            pk=last_pk + 1
+            )
         response = self.get()
 
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
