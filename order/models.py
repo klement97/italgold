@@ -18,7 +18,7 @@ class LeatherSerial(models.Model):
 class Leather(models.Model):
     code = models.CharField(verbose_name='Code', max_length=30, unique=True)
     serial = models.ForeignKey(LeatherSerial, on_delete=models.DO_NOTHING, related_name='leathers')
-    image = models.ImageField(verbose_name='Image', blank=True)
+    image = models.ImageField(verbose_name='Image', blank=True, upload_to='leathers')
     deleted = models.BooleanField(default=False)
 
     class Meta:
@@ -72,7 +72,7 @@ class Product(models.Model):
     code = models.CharField(max_length=30, verbose_name='Code', unique=True)
     title = models.CharField(max_length=250, verbose_name='Title', blank=True)
     description = models.TextField(verbose_name='Description', blank=True)
-    image = models.ImageField(verbose_name='Image')
+    image = models.ImageField(verbose_name='Image', upload_to='products')
 
     category = models.ForeignKey(ProductCategory, on_delete=models.DO_NOTHING, related_name='products', verbose_name='Category')
     inner_leather = models.ForeignKey(Leather, on_delete=models.DO_NOTHING, related_name='inner_products', verbose_name='Inner leather')
