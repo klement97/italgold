@@ -16,7 +16,7 @@ class LeatherSerial(models.Model):
 
 
 class Leather(models.Model):
-    code = models.CharField(verbose_name='Code', max_length=30, unique=True)
+    code = models.CharField(verbose_name='Code', max_length=30)
     serial = models.ForeignKey(LeatherSerial, on_delete=models.DO_NOTHING, related_name='leathers')
     image = models.ImageField(verbose_name='Image', blank=True, upload_to='leathers')
     deleted = models.BooleanField(default=False)
@@ -26,6 +26,7 @@ class Leather(models.Model):
         verbose_name = "Leather"
         verbose_name_plural = "Leathers"
         db_table = 'leather'
+        unique_together = ['code', 'serial']
 
     def __str__(self):
         return self.code
