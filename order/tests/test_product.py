@@ -43,3 +43,6 @@ class TestProductRetrieve(KKAPITestCase):
         response = self.get()
 
         self.assertTrue(v.validate(response.data))
+
+    def test_num_of_queries(self):
+        self.assertNumQueries(1, func=self.get)
