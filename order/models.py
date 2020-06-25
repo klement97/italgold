@@ -117,4 +117,4 @@ class OrderUnit(models.Model):
         db_table = 'order_unit'
 
     def __str__(self):
-        return self.id
+        return f'{self.order.id}-{self.product}'
