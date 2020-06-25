@@ -13,13 +13,19 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
+
+from kral_kutu_backend.settings import DEBUG, MEDIA_ROOT, MEDIA_URL
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('order.urls'))
     ]
+
+if DEBUG:
+    urlpatterns += static(MEDIA_URL, document_root=MEDIA_ROOT)
 
 admin.site.site_header = "KRAL KUTU Admin"
 admin.site.site_title = "KRAL KUTU Admin Portal"
