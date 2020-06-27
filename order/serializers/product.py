@@ -1,7 +1,7 @@
 from rest_framework.serializers import ModelSerializer
 
 from order.models import Product, ProductCategory
-from order.serializers.leather_serializers import LeatherSerializer
+from order.serializers.leather import LeatherSerializer
 
 
 class ProductCategorySerializer(ModelSerializer):

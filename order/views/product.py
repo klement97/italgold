@@ -2,7 +2,7 @@ from rest_framework.generics import ListAPIView, RetrieveAPIView
 
 from order.filters import ProductFilter
 from order.models import Product, ProductCategory
-from order.serializers.product_serializers import ProductCategorySerializer, ProductSerializer
+from order.serializers.product import ProductCategorySerializer, ProductSerializer
 
 
 class ProductRetrieveAPIView(RetrieveAPIView):

@@ -1,7 +1,7 @@
 from rest_framework.generics import ListAPIView
 
 from order.models import Leather, LeatherSerial
-from order.serializers.leather_serializers import LeatherSerialSerializer, LeatherSerializer
+from order.serializers.leather import LeatherSerialSerializer, LeatherSerializer
 
 
 class LeatherListAPIView(ListAPIView):

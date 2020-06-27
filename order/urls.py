@@ -1,7 +1,7 @@
 from django.urls import path
 
-from order.views.leather_views import LeatherListAPIView, LeatherSerialListAPIView
-from order.views.product_views import ProductCategoryListAPIView, ProductListAPIView, \
+from order.views.leather import LeatherListAPIView, LeatherSerialListAPIView
+from order.views.product import ProductCategoryListAPIView, ProductListAPIView, \
     ProductRetrieveAPIView
 
 urlpatterns = [
