@@ -14,7 +14,6 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.conf.urls.i18n import i18n_patterns
-
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
@@ -34,5 +33,3 @@ if DEBUG:
 admin.site.site_header = "KRAL KUTU Admin"
 admin.site.site_title = "KRAL KUTU Admin Portal"
 admin.site.index_title = "Welcome to KRAL KUTU Portal"
-
-
