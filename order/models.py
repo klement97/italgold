@@ -17,7 +17,10 @@ class LeatherSerial(models.Model):
 
 class Leather(models.Model):
     code = models.CharField(verbose_name='Code', max_length=30)
-    serial = models.ForeignKey(LeatherSerial, on_delete=models.DO_NOTHING, related_name='leathers')
+    serial = models.ForeignKey(LeatherSerial,
+                               on_delete=models.DO_NOTHING,
+                               related_name='leathers'
+                               )
     image = models.ImageField(verbose_name='Image', blank=True, upload_to='leathers')
     deleted = models.BooleanField(default=False)
 
@@ -75,14 +78,30 @@ class Product(models.Model):
     description = models.TextField(verbose_name='Description', blank=True)
     image = models.ImageField(verbose_name='Image', upload_to='products')
 
-    category = models.ForeignKey(ProductCategory, on_delete=models.DO_NOTHING, related_name='products', verbose_name='Category')
-    inner_leather = models.ForeignKey(Leather, on_delete=models.DO_NOTHING, related_name='inner_products', verbose_name='Inner leather')
-    outer_leather = models.ForeignKey(Leather, on_delete=models.DO_NOTHING, related_name='outer_products', verbose_name='Outer leather')
+    category = models.ForeignKey(ProductCategory,
+                                 on_delete=models.DO_NOTHING,
+                                 related_name='products',
+                                 verbose_name='Category'
+                                 )
+    inner_leather = models.ForeignKey(Leather,
+                                      on_delete=models.DO_NOTHING,
+                                      related_name='inner_products',
+                                      verbose_name='Inner leather'
+                                      )
+    outer_leather = models.ForeignKey(Leather,
+                                      on_delete=models.DO_NOTHING,
+                                      related_name='outer_products',
+                                      verbose_name='Outer leather'
+                                      )
 
-    price = models.DecimalField(verbose_name='Price', decimal_places=2, max_digits=9)
-    height = models.DecimalField(verbose_name='Height', null=True, max_digits=5, decimal_places=2, blank=True)
-    width = models.DecimalField(verbose_name='Width', null=True, max_digits=5, decimal_places=2, blank=True)
-    length = models.DecimalField(verbose_name='Length', null=True, max_digits=5, decimal_places=2, blank=True)
+    price = models.DecimalField(verbose_name='Price',
+                                decimal_places=2, max_digits=9)
+    height = models.DecimalField(verbose_name='Height', null=True,
+                                 max_digits=5, decimal_places=2, blank=True)
+    width = models.DecimalField(verbose_name='Width', null=True, max_digits=5,
+                                decimal_places=2, blank=True)
+    length = models.DecimalField(verbose_name='Length', null=True, max_digits=5,
+                                 decimal_places=2, blank=True)
 
     deleted = models.BooleanField(default=False)
 
@@ -97,10 +116,26 @@ class Product(models.Model):
 
 
 class OrderUnit(models.Model):
-    order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name='order_units', verbose_name='Order')
-    product = models.ForeignKey(Product, on_delete=models.DO_NOTHING, related_name='order_units', verbose_name='Product')
-    inner_leather = models.ForeignKey(Leather, on_delete=models.DO_NOTHING, related_name='inner_order_units', verbose_name='Inner leather')
-    outer_leather = models.ForeignKey(Leather, on_delete=models.DO_NOTHING, related_name='outer_order_units', verbose_name='Outer leather')
+    order = models.ForeignKey(Order,
+                              on_delete=models.CASCADE,
+                              related_name='order_units',
+                              verbose_name='Order'
+                              )
+    product = models.ForeignKey(Product,
+                                on_delete=models.DO_NOTHING,
+                                related_name='order_units',
+                                verbose_name='Product'
+                                )
+    inner_leather = models.ForeignKey(Leather,
+                                      on_delete=models.DO_NOTHING,
+                                      related_name='inner_order_units',
+                                      verbose_name='Inner leather'
+                                      )
+    outer_leather = models.ForeignKey(Leather,
+                                      on_delete=models.DO_NOTHING,
+                                      related_name='outer_order_units',
+                                      verbose_name='Outer leather'
+                                      )
 
     quantity = models.PositiveIntegerField(verbose_name='Quantity')
     price = models.DecimalField(verbose_name='Price', max_digits=9, decimal_places=2)
