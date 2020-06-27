@@ -87,13 +87,14 @@ class TestProductList(KKAPITestCase):
         """
         Ensure that we can get a paginated response.
         """
-        self.list_assertions(True)
+        self.list_assertions(paginated=True)
 
     def test_not_paginated_list(self):
         """
         Ensure that we can get a not paginated response when avoiding page query param.
         """
-        self.list_assertions(False, response_data_count=len(self.products))
+        self.list_assertions(paginated=False,
+                             response_data_count=len(self.products))
 
     def test_json_schema(self):
         """
@@ -126,7 +127,8 @@ class TestProductCategoryList(KKAPITestCase):
         self.v = Validator(product_category_schema)
 
     def test_not_paginated_list(self):
-        self.list_assertions(False, len(self.product_categories))
+        self.list_assertions(paginated=False,
+                             response_data_count=len(self.product_categories))
 
     def test_json_schema(self):
         response = self.get()

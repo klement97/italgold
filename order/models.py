@@ -94,10 +94,14 @@ class Product(models.Model):
                                       verbose_name='Outer leather'
                                       )
 
-    price = models.DecimalField(verbose_name='Price', decimal_places=2, max_digits=9)
-    height = models.DecimalField(verbose_name='Height', null=True, max_digits=5, decimal_places=2, blank=True)
-    width = models.DecimalField(verbose_name='Width', null=True, max_digits=5, decimal_places=2, blank=True)
-    length = models.DecimalField(verbose_name='Length', null=True, max_digits=5, decimal_places=2, blank=True)
+    price = models.DecimalField(verbose_name='Price',
+                                decimal_places=2, max_digits=9)
+    height = models.DecimalField(verbose_name='Height', null=True,
+                                 max_digits=5, decimal_places=2, blank=True)
+    width = models.DecimalField(verbose_name='Width', null=True, max_digits=5,
+                                decimal_places=2, blank=True)
+    length = models.DecimalField(verbose_name='Length', null=True, max_digits=5,
+                                 decimal_places=2, blank=True)
 
     deleted = models.BooleanField(default=False)
 
