@@ -4,8 +4,8 @@ from model_bakery import baker
 from rest_framework import status
 
 from kral_kutu_backend.api_test_case import KKAPITestCase, faker
-from order.models import Leather, Product
-from order.schemas.product import product_schema
+from order.models import Leather, Product, ProductCategory
+from order.schemas.product import product_category_schema, product_schema
 
 
 class TestProductRetrieve(KKAPITestCase):
@@ -109,4 +109,30 @@ class TestProductList(KKAPITestCase):
         applied to the query to minimize the number of queries
         for the list operation.
         """
-        self.assertNumQueries(2, self.get)
+        self.assertNumQueries(1, self.get)
+
+
+class TestProductCategoryList(KKAPITestCase):
+    url = reverse('product-category')
+
+    @classmethod
+    def setUpTestData(cls):
+        baker.make(ProductCategory, _quantity=10, deleted=True)
+        cls.product_categories = baker.make(ProductCategory,
+                                            _quantity=25,
+                                            deleted=False)
+
+    def setUp(self) -> None:
+        self.v = Validator(product_category_schema)
+
+    def test_not_paginated_list(self):
+        self.list_assertions(False, len(self.product_categories))
+
+    def test_json_schema(self):
+        response = self.get()
+
+        [self.assertTrue(self.v.validate(category))
+         for category in response.data]
+
+    def test_num_of_queries(self):
+        self.assertNumQueries(1, self.get)
