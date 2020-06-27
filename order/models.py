@@ -1,3 +1,4 @@
+from django.core.validators import MinValueValidator
 from django.db import models
 
 
@@ -94,14 +95,20 @@ class Product(models.Model):
                                       verbose_name='Outer leather'
                                       )
 
-    price = models.DecimalField(verbose_name='Price',
-                                decimal_places=2, max_digits=9)
+    price = models.DecimalField(verbose_name='Price', decimal_places=2, max_digits=9,
+                                validators=[MinValueValidator(0)])
     height = models.DecimalField(verbose_name='Height', null=True,
-                                 max_digits=5, decimal_places=2, blank=True)
+                                 max_digits=5, decimal_places=2, blank=True,
+                                 validators=[MinValueValidator(0)]
+                                 )
     width = models.DecimalField(verbose_name='Width', null=True, max_digits=5,
-                                decimal_places=2, blank=True)
+                                decimal_places=2, blank=True,
+                                validators=[MinValueValidator(0)]
+                                )
     length = models.DecimalField(verbose_name='Length', null=True, max_digits=5,
-                                 decimal_places=2, blank=True)
+                                 decimal_places=2, blank=True,
+                                 validators=[MinValueValidator(0)]
+                                 )
 
     deleted = models.BooleanField(default=False)
 
@@ -137,11 +144,24 @@ class OrderUnit(models.Model):
                                       verbose_name='Outer leather'
                                       )
 
-    quantity = models.PositiveIntegerField(verbose_name='Quantity')
-    price = models.DecimalField(verbose_name='Price', max_digits=9, decimal_places=2)
-    height = models.DecimalField(verbose_name='Height', null=True, max_digits=5, decimal_places=2)
-    width = models.DecimalField(verbose_name='Width', null=True, max_digits=5, decimal_places=2)
-    length = models.DecimalField(verbose_name='Length', null=True, max_digits=5, decimal_places=2)
+    quantity = models.PositiveIntegerField(verbose_name='Quantity',
+                                           validators=[MinValueValidator(1)]
+                                           )
+    price = models.DecimalField(verbose_name='Price', max_digits=9, decimal_places=2,
+                                validators=[MinValueValidator(0)]
+                                )
+    height = models.DecimalField(verbose_name='Height', null=True,
+                                 max_digits=5, decimal_places=2,
+                                 validators=[MinValueValidator(0)]
+                                 )
+    width = models.DecimalField(verbose_name='Width', null=True,
+                                max_digits=5, decimal_places=2,
+                                validators=[MinValueValidator(0)]
+                                )
+    length = models.DecimalField(verbose_name='Length', null=True,
+                                 max_digits=5, decimal_places=2,
+                                 validators=[MinValueValidator(0)]
+                                 )
 
     notes = models.CharField(max_length=254, verbose_name='Notes', blank=True)
 
