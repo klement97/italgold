@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 import os
 
-# from django.utils.translation import gettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -50,7 +50,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    # 'django.middleware.locale.LocaleMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -77,6 +77,9 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 ],
+            'libraries': {
+                'templatetags': 'order.templatetags.i18n_switcher'
+                }
             },
         },
     ]
@@ -136,13 +139,13 @@ USE_L10N = True
 
 USE_TZ = True
 
-# LOCALE_PATHS = [os.path.join(BASE_DIR, 'locale')]
-#
-# LANGUAGES = [
-#     ('en', _('English')),
-#     ('tr', _('Turkish')),
-#     ('sq', _('Albanian')),
-# ]
+LOCALE_PATHS = [os.path.join(BASE_DIR, 'locale')]
+
+LANGUAGES = [
+    ('en', _('English')),
+    ('tr', _('Turkish')),
+    ('sq', _('Albanian')),
+]
 
 
 # Static files (CSS, JavaScript, Images)
