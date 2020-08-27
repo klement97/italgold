@@ -9,7 +9,6 @@ djangorestframework==3.11.0
 Faker==4.1.1
 gunicorn==20.0.4
 model-bakery==1.1.0
-Pillow==7.1.2
 psycopg2==2.8.5
 python-dateutil==2.8.1
 pytz==2020.1
