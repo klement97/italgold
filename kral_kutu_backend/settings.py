@@ -96,18 +96,18 @@ WSGI_APPLICATION = 'kral_kutu_backend.wsgi.application'
 #    }
 
 DATABASES = {
-        "default": {
-                    "ENGINE": os.environ.get("SQL_ENGINE",
-                                             "django.db.backends.sqlite3"),
-                    "NAME": os.environ.get("SQL_DATABASE",
-                                           os.path.join(BASE_DIR,
-                                                        "db.sqlite3")),
-                    "USER": os.environ.get("SQL_USER", "user"),
-                    "PASSWORD": os.environ.get("SQL_PASSWORD", "password"),
-                    "HOST": os.environ.get("SQL_HOST", "localhost"),
-                    "PORT": os.environ.get("SQL_PORT", "5432"),
-                }
-}
+    "default": {
+        "ENGINE": os.environ.get("SQL_ENGINE",
+                                 "django.db.backends.sqlite3"),
+        "NAME": os.environ.get("SQL_DATABASE",
+                               os.path.join(BASE_DIR,
+                                            "db.sqlite3")),
+        "USER": os.environ.get("SQL_USER", "user"),
+        "PASSWORD": os.environ.get("SQL_PASSWORD", "password"),
+        "HOST": os.environ.get("SQL_HOST", "localhost"),
+        "PORT": os.environ.get("SQL_PORT", "5432"),
+        }
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -163,6 +163,19 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
+
+# if not DEBUG:
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+AWS_ACCESS_KEY_ID = 'AKIAU4LAKYYR3ORM6U2N'
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_BUCKET_NAME = 'kral_kutu'
+AWS_QUERYSTRING_AUTH = False
+AWS_QUERYSTRING_EXPIRE = 3600
+AWS_S3_FILE_OVERWRITE = False
+AWS_S3_REGION_NAME = 'us-west-1'
+AWS_S3_ENDPOINT_URL = 'https://felix-cloud-shared-1-kral-kutu-335746352675' \
+                      '.s3-accesspoint.us-west-1.amazonaws.com'
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
