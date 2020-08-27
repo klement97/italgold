@@ -24,8 +24,8 @@ urlpatterns = [
     path('', include('order.urls'))
     ]
 
-if DEBUG:
-    urlpatterns += static(MEDIA_URL, document_root=MEDIA_ROOT)
+# if DEBUG:
+urlpatterns += static(MEDIA_URL, document_root=MEDIA_ROOT)
 
 admin.site.site_header = "KRAL KUTU Admin"
 admin.site.site_title = "KRAL KUTU Admin Portal"
