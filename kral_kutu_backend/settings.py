@@ -106,6 +106,14 @@ DATABASES = {
         "PASSWORD": os.environ.get("SQL_PASSWORD", "password"),
         "HOST": os.environ.get("SQL_HOST", "localhost"),
         "PORT": os.environ.get("SQL_PORT", "5432"),
+        },
+    "replica": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "postgres2",
+        "USER": "postgres",
+        "PASSWORD": "postgres",
+        "HOST": "db_2",
+        "PORT": "5432",
         }
     }
 
@@ -164,8 +172,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
-# if not DEBUG:
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+if not DEBUG:
+    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 AWS_ACCESS_KEY_ID = 'AKIAU4LAKYYR3ORM6U2N'
 AWS_SECRET_ACCESS_KEY = '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'

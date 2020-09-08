@@ -1,12 +1,20 @@
   version: '3'
     
   services:
-    db:
+    db_1:
       image: postgres
       volumes:
       - postgres_data:/var/lib/postgresql/data/
       environment:
         - POSTGRES_DB=postgres
+        - POSTGRES_USER=postgres
+        - POSTGRES_PASSWORD=postgres
+    db_2:
+      image: postgres
+      volumes:
+      - postgres_data_2:/var/lib/postgresql/data/
+      environment:
+        - POSTGRES_DB=postgres2
         - POSTGRES_USER=postgres
         - POSTGRES_PASSWORD=postgres
     web:
@@ -17,6 +25,8 @@
       ports:
         - "8000:8000"
       depends_on:
-        - db
+        - db_1
+        - db_2
   volumes:
     postgres_data:
+    postgres_data_2:
