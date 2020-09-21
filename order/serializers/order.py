@@ -1,5 +1,4 @@
 from django.db.transaction import atomic
-from rest_framework.fields import SerializerMethodField
 from rest_framework.serializers import ModelSerializer
 
 from order.models import Order, OrderUnit

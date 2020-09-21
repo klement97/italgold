@@ -12,8 +12,6 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 import os
 
-import django_heroku
-
 # from django.utils.translation import gettext_lazy as _
 
 
@@ -88,32 +86,14 @@ WSGI_APPLICATION = 'kral_kutu_backend.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-# DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.sqlite3',
-#        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#        }
-#    }
-
 DATABASES = {
     "default": {
-        "ENGINE": os.environ.get("SQL_ENGINE",
-                                 "django.db.backends.sqlite3"),
-        "NAME": os.environ.get("SQL_DATABASE",
-                               os.path.join(BASE_DIR,
-                                            "db.sqlite3")),
-        "USER": os.environ.get("SQL_USER", "user"),
-        "PASSWORD": os.environ.get("SQL_PASSWORD", "password"),
+        "ENGINE": os.environ.get("SQL_ENGINE", "django.db.backends.sqlite3"),
+        "NAME": os.environ.get("SQL_DATABASE", os.path.join(BASE_DIR, "db.sqlite3")),
+        "USER": os.environ.get("SQL_USER", "postgres"),
+        "PASSWORD": os.environ.get("SQL_PASSWORD", "postgres"),
         "HOST": os.environ.get("SQL_HOST", "localhost"),
         "PORT": os.environ.get("SQL_PORT", "5432"),
-        },
-    "replica": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": "postgres2",
-        "USER": "postgres",
-        "PASSWORD": "postgres",
-        "HOST": "db_2",
-        "PORT": "5432",
         }
     }
 
@@ -191,4 +171,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 MEDIA_URL = '/media/'
 
-django_heroku.settings(locals())
+if not DEBUG:
+    import django_heroku
+
+    django_heroku.settings(locals())
