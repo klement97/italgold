@@ -13,5 +13,5 @@ urlpatterns = [
     path('leather/', LeatherListAPIView.as_view(), name='leather'),
     path('leather-serial/', LeatherSerialListAPIView.as_view(), name='leather-serial'),
 
-    path('order/', OrderCreateAPIView.as_view(), name='order')
+    path('order/', OrderCreateAPIView.as_view(), name='order'),
     ]
