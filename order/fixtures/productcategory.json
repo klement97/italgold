@@ -1,0 +1,50 @@
+[
+{
+  "model": "order.productcategory",
+  "pk": 1,
+  "fields": {
+    "deleted": false,
+    "name": "Tabaka"
+  }
+},
+{
+  "model": "order.productcategory",
+  "pk": 2,
+  "fields": {
+    "deleted": false,
+    "name": "Kuti"
+  }
+},
+{
+  "model": "order.productcategory",
+  "pk": 3,
+  "fields": {
+    "deleted": false,
+    "name": "Tabaka Premium"
+  }
+},
+{
+  "model": "order.productcategory",
+  "pk": 4,
+  "fields": {
+    "deleted": false,
+    "name": "Tabaka shërbimi"
+  }
+},
+{
+  "model": "order.productcategory",
+  "pk": 5,
+  "fields": {
+    "deleted": false,
+    "name": "Aksesor"
+  }
+},
+{
+  "model": "order.productcategory",
+  "pk": 7,
+  "fields": {
+    "deleted": false,
+    "name": "Vitrina"
+  }
+}
+]
