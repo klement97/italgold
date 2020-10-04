@@ -6,18 +6,12 @@ from order.serializers.product import ProductCategorySerializer, ProductSerializ
 
 
 class ProductRetrieveAPIView(RetrieveAPIView):
-    queryset = Product.objects \
-        .select_related('category', 'inner_leather', 'outer_leather',
-                        'inner_leather__serial', 'outer_leather__serial') \
-        .filter(deleted=False)
+    queryset = Product.objects.select_related('category').filter(deleted=False)
     serializer_class = ProductSerializer
 
 
 class ProductListAPIView(ListAPIView):
-    queryset = Product.objects \
-        .select_related('category', 'inner_leather', 'outer_leather',
-                        'inner_leather__serial', 'outer_leather__serial') \
-        .filter(deleted=False)
+    queryset = Product.objects.select_related('category').filter(deleted=False)
     serializer_class = ProductSerializer
     filterset_class = ProductFilter
 

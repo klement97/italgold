@@ -18,9 +18,11 @@ RUN apk update \
     && apk add jpeg-dev zlib-dev libjpeg \
     && pip install Pillow \
     && apk del build-deps
+#    && apk add tesseract-ocr libtesseract-dev
 
 COPY requirements.txt /code/
 
+RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
 COPY . /code/

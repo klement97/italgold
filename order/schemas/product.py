@@ -37,18 +37,6 @@ product_schema = {
         'empty': False,
         'schema': product_category_schema
         },
-    'inner_leather': {
-        'type': 'dict',
-        'required': True,
-        'empty': False,
-        'schema': leather_schema
-        },
-    'outer_leather': {
-        'type': 'dict',
-        'required': True,
-        'empty': False,
-        'schema': leather_schema
-        },
     # Decimal values are serialized as strings
     'price': {
         'type': 'string',

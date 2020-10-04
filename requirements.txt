@@ -23,3 +23,7 @@ sqlparse==0.3.1
 text-unidecode==1.3
 urllib3==1.25.10
 whitenoise==5.2.0
+# scikit-build
+# cmake
+# pytesseract
+# opencv-contrib-python
