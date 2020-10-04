@@ -3,7 +3,7 @@ from django.core.validators import MinValueValidator
 from django.db import models
 from django.db.models import JSONField
 
-from common.models import CodedModel, LogicalDeleteModel, ProductClassModel, TrackedModel
+from common.models import LogicalDeleteModel, TrackedModel
 
 
 class LeatherSerial(LogicalDeleteModel):
@@ -49,6 +49,22 @@ class ProductCategory(LogicalDeleteModel):
         return self.name
 
 
+class Product(LogicalDeleteModel):
+    image = models.ImageField(verbose_name='Image', upload_to='products')
+    price = models.DecimalField(verbose_name='Price', decimal_places=3, max_digits=10,
+                                validators=[MinValueValidator(0)])
+    properties = JSONField('Properties', help_text='Stores all of the product specific properties.')
+    category = models.ForeignKey(to=ProductCategory,
+                                 on_delete=models.DO_NOTHING,
+                                 related_name='products',
+                                 verbose_name='Category')
+
+    class Meta:
+        ordering = ["-id"]
+        verbose_name = "Product"
+        verbose_name_plural = "Products"
+
+
 class Order(LogicalDeleteModel, TrackedModel):
     first_name = models.CharField(max_length=50, verbose_name='First name')
     last_name = models.CharField(max_length=50, verbose_name='Last name')
@@ -56,7 +72,17 @@ class Order(LogicalDeleteModel, TrackedModel):
     address = models.CharField(max_length=254, verbose_name='Address')
     email = models.EmailField(max_length=254, verbose_name='Email', blank=True)
 
-    order_units = ArrayField(JSONField())
+    products = ArrayField(JSONField(verbose_name='Product details'))
+    inner_leather = models.ForeignKey(to=Leather,
+                                      on_delete=models.CASCADE,
+                                      related_name='inner_orders',
+                                      verbose_name='Inner leather',
+                                      null=True)
+    outer_leather = models.ForeignKey(to=Leather,
+                                      on_delete=models.CASCADE,
+                                      related_name='outer_orders',
+                                      verbose_name='Outer leather',
+                                      null=True)
 
     class Meta:
         ordering = ["-date_created"]
@@ -65,42 +91,3 @@ class Order(LogicalDeleteModel, TrackedModel):
 
     def __str__(self):
         return '%s - %s' % (self.first_name, self.last_name)
-
-
-class Product(LogicalDeleteModel):
-    image = models.ImageField(verbose_name='Image', upload_to='products')
-    category = models.ForeignKey(
-            to=ProductCategory,
-            on_delete=models.DO_NOTHING,
-            related_name='products',
-            verbose_name='Category'
-            )
-    price = models.DecimalField(verbose_name='Price', decimal_places=3, max_digits=10,
-                                validators=[MinValueValidator(0)])
-
-    class Meta:
-        ordering = ["-id"]
-        verbose_name = "Product"
-        verbose_name_plural = "Products"
-
-
-class Table(ProductClassModel, CodedModel):
-    height = models.DecimalField(verbose_name='Height', max_digits=4, decimal_places=1,
-                                 validators=[MinValueValidator(0)])
-    width = models.DecimalField(verbose_name='Width', max_digits=4, decimal_places=1,
-                                validators=[MinValueValidator(0)])
-    length = models.DecimalField(verbose_name='Length', max_digits=4, decimal_places=1,
-                                 validators=[MinValueValidator(0)])
-
-
-class Accessory(ProductClassModel, CodedModel):
-    pass
-
-
-class Golden(ProductClassModel):
-    weight = models.DecimalField(verbose_name='Weight', max_digits=6, decimal_places=2)
-    carat = models.CharField(max_length=10)
-
-
-class Silver(ProductClassModel):
-    weight = models.DecimalField(verbose_name='Weight', max_digits=6, decimal_places=2)

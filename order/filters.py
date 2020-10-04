@@ -4,7 +4,6 @@ from order.models import Product
 
 
 class ProductFilter(filters.FilterSet):
-    title = filters.CharFilter(lookup_expr='icontains')
     price = filters.NumericRangeFilter()
 
     class Meta:

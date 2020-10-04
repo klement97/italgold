@@ -14,17 +14,3 @@ class TrackedModel(models.Model):
 
     class Meta:
         abstract = True
-
-
-class ProductClassModel(models.Model):
-    product = models.OneToOneField(to='Product', on_delete=models.CASCADE)
-
-    class Meta:
-        abstract = True
-
-
-class CodedModel(models.Model):
-    code = models.CharField(verbose_name='Code', max_length=30, unique=True)
-
-    class Meta:
-        abstract = True
