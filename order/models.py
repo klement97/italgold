@@ -66,11 +66,11 @@ class Product(LogicalDeleteModel):
 
 
 class Order(LogicalDeleteModel, TrackedModel):
-    first_name = models.CharField(max_length=50, verbose_name='First name')
-    last_name = models.CharField(max_length=50, verbose_name='Last name')
-    phone = models.CharField(max_length=20, verbose_name='Phone')
-    address = models.CharField(max_length=254, verbose_name='Address')
-    email = models.EmailField(max_length=254, verbose_name='Email', blank=True)
+    first_name = models.CharField(verbose_name='First name', max_length=50)
+    last_name = models.CharField(verbose_name='Last name', max_length=50)
+    phone = models.CharField(verbose_name='Phone', max_length=20)
+    address = models.CharField(verbose_name='Address', max_length=254)
+    email = models.EmailField(verbose_name='Email', max_length=254, blank=True)
 
     products = ArrayField(JSONField(verbose_name='Product details'))
     inner_leather = models.ForeignKey(to=Leather,
