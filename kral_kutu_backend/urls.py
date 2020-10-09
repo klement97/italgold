@@ -26,6 +26,6 @@ urlpatterns = [
 
 urlpatterns += static(MEDIA_URL, document_root=MEDIA_ROOT)
 
-admin.site.site_header = "KRAL KUTU Admin"
-admin.site.site_title = "KRAL KUTU Admin Portal"
-admin.site.index_title = "Welcome to KRAL KUTU Portal"
+admin.site.site_header = "ITALGOLD Admin"
+admin.site.site_title = "ITALGOLD Admin Portal"
+admin.site.index_title = "Welcome to ITALGOLD Portal"
