@@ -1,7 +1,7 @@
 from rest_framework.generics import ListAPIView
 
 from order.models import Leather, LeatherSerial
-from order.serializers.leather import LeatherSerialSerializer, LeatherSerializer
+from order.serializers import LeatherSerialSerializer, LeatherSerializer
 
 
 class LeatherListAPIView(ListAPIView):
@@ -14,4 +14,4 @@ class LeatherListAPIView(ListAPIView):
 
 class LeatherSerialListAPIView(ListAPIView):
     serializer_class = LeatherSerialSerializer
-    queryset = LeatherSerial.objects.filter(deleted=False)
+    queryset = LeatherSerial.objects.prefetch_related('leathers').filter(deleted=False)

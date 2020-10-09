@@ -1,6 +1,6 @@
 from rest_framework.generics import CreateAPIView
 
-from order.serializers.order import OrderSerializer
+from order.serializers import OrderSerializer
 
 
 class OrderCreateAPIView(CreateAPIView):
