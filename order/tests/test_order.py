@@ -2,7 +2,7 @@ from django.urls import reverse
 from rest_framework import status
 
 from kral_kutu_backend.api_test_case import KKAPITestCase
-from order.models import Order, OrderUnit
+from order.models import Order
 from order.tests.utils import get_invalid_order_create_dict, get_valid_order_create_dict
 
 
@@ -41,20 +41,6 @@ class TestOrderCreate(KKAPITestCase):
 
         [self.assertEqual(getattr(order, field), request_data[field])
          for field in ['first_name', 'last_name', 'phone', 'address']]
-
-    def test_are_order_units_created_in_db(self):
-        request_data = get_valid_order_create_dict()
-        response = self.post(data=request_data, format='json')
-        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
-
-        order_units = OrderUnit.objects.order_by('id').filter(order_id=response.data['id'])
-
-        self.assertEqual(len(order_units), len(request_data['order_units']))
-
-        for created_unit, posted_unit in zip(order_units.all(), request_data['order_units']):
-            self.assertEqual(created_unit.product.id, posted_unit['product'])
-            self.assertEqual(created_unit.quantity, posted_unit['quantity'])
-            self.assertEqual(created_unit.notes, posted_unit['notes'])
 
     def test_num_of_queries(self):
         # TODO: Find a way to reduce the number of queries

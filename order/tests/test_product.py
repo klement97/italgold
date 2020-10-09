@@ -4,8 +4,9 @@ from model_bakery import baker
 from rest_framework import status
 
 from kral_kutu_backend.api_test_case import KKAPITestCase, faker
-from order.models import Leather, Product, ProductCategory
+from order.models import Product, ProductCategory
 from order.schemas.product import product_category_schema, product_schema
+from order.tests.utils import create_product
 
 
 class TestProductRetrieve(KKAPITestCase):
@@ -14,11 +15,7 @@ class TestProductRetrieve(KKAPITestCase):
     def setUpTestData(cls):
         # Baker leaves the image field empty
         # so we have to handle it ourselves
-        leather = baker.make(Leather, image=faker.file_name())
-        cls.products = baker.make(
-                Product, _quantity=5, image=faker.file_name(),
-                inner_leather=leather, outer_leather=leather
-                )
+        cls.products = [create_product() for _ in range(5)]
 
     def setUp(self) -> None:
         self.url = self.get_url_with_pk(
@@ -68,17 +65,8 @@ class TestProductList(KKAPITestCase):
 
     @classmethod
     def setUpTestData(cls):
-        leather = baker.make(Leather, image=faker.file_name())
-        cls.products = baker.make(Product,
-                                  _quantity=25,
-                                  image=faker.file_name(),
-                                  inner_leather=leather,
-                                  outer_leather=leather,
-                                  deleted=False)
-        baker.make(Product,
-                   _quantity=15,
-                   image=faker.file_name(),
-                   deleted=True)
+        cls.products = baker.make(Product, _quantity=25, image=faker.file_name(), deleted=False)
+        baker.make(Product, _quantity=15, image=faker.file_name(), deleted=True)
 
     def setUp(self) -> None:
         self.v = Validator(product_schema)

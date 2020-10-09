@@ -1,22 +1,33 @@
 from model_bakery import baker
 
 from kral_kutu_backend.api_test_case import faker
-from order.models import Leather, Product
+from order.models import Leather, Product, ProductCategory
 
 
-def get_valid_order_units_dict():
+def create_product():
+    return Product.objects.create(
+            image=faker.file_name(),
+            price=faker.pydecimal(),
+            category=baker.make(ProductCategory),
+            properties={"code": "P-001"}
+            )
+
+
+def get_valid_products_dict():
     return [{
-        'product': baker.make(Product).id,
+        'product': create_product().id,
         'quantity': faker.random.randint(1, 10),
-        'notes': faker.text()
+        'notes': faker.text(),
+        'width': faker.random.randint(15, 35),
+        'height': faker.random.randint(1, 5),
+        'length': faker.random.randint(15, 35)
         }
         for _ in range(faker.random.randint(5, 15))]
 
 
 def get_invalid_order_units_dict():
-    product = baker.make(Product)
     return [{
-        'product': product.id + 1,
+        'product': create_product().id + 1,
         'quantity': faker.random.randint(-100, -1),
         'notes': faker.pybool()
         }
@@ -31,7 +42,7 @@ def get_valid_order_create_dict():
         'address': faker.address(),
         'inner_leather': baker.make(Leather).id,
         'outer_leather': baker.make(Leather).id,
-        'order_units': get_valid_order_units_dict()
+        'products': get_valid_products_dict()
         }
 
 
@@ -44,5 +55,5 @@ def get_invalid_order_create_dict():
         'address': faker.sentence(nb_words=200),
         'inner_leather': leather.id + 1,
         'outer_leather': leather.id + 2,
-        'order_units': get_invalid_order_units_dict()
+        'products': get_invalid_order_units_dict()
         }
