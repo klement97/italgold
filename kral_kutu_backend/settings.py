@@ -37,16 +37,21 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
+    'django.contrib.staticfiles'
+    ]
 
-    # Third party
+THIRD_PART = [
     'corsheaders',
     'rest_framework',
     'django_filters',
+    ]
 
-    # Internal
+INTERNAL = [
     'order'
     ]
+
+INSTALLED_APPS += THIRD_PART
+INSTALLED_APPS += INTERNAL
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -154,7 +159,7 @@ LANGUAGES = [
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
-#if not DEBUG:
+# if not DEBUG:
 #    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 AWS_ACCESS_KEY_ID = 'AKIAU4LAKYYR3ORM6U2N'
