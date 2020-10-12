@@ -178,10 +178,13 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'kral_kutu_backend/static')
     ]
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
-MEDIA_URL = '/media/'
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+# MEDIA_URL = '/media/'
 
 if not DEBUG:
     import django_heroku
 
     django_heroku.settings(locals())
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+MEDIA_URL = '/media/'
