@@ -1,9 +1,9 @@
 from django.urls import path
 
-from order.views.leather import LeatherListAPIView, LeatherSerialListAPIView
-from order.views.order import OrderCreateAPIView
-from order.views.product import ProductCategoryListAPIView, ProductListAPIView, \
-    ProductRetrieveAPIView
+from order.views import (
+    LeatherListAPIView, LeatherSerialListAPIView, OrderCreateAPIView, ProductCategoryListAPIView,
+    ProductListAPIView, ProductRetrieveAPIView
+    )
 
 urlpatterns = [
     path('product/<int:pk>/', ProductRetrieveAPIView.as_view(), name='product'),
