@@ -1,18 +1,17 @@
 from rest_framework import status
-from rest_framework.generics import CreateAPIView
-from rest_framework.generics import ListAPIView, RetrieveAPIView
+from rest_framework.generics import CreateAPIView, ListAPIView, RetrieveAPIView
 from rest_framework.response import Response
 
 from order.filters import ProductFilter
-from order.models import Leather, LeatherSerial
+from order.models import Leather, LeatherSerial, Order
 from order.models import Product, ProductCategory
-from order.serializers import LeatherSerialSerializer, LeatherSerializer
-from order.serializers import OrderSerializer
+from order.serializers import LeatherSerialSerializer, LeatherSerializer, OrderReadSerializer
+from order.serializers import OrderWriteSerializer
 from order.serializers import ProductCategorySerializer, ProductSerializer
 
 
 class OrderCreateAPIView(CreateAPIView):
-    serializer_class = OrderSerializer
+    serializer_class = OrderWriteSerializer
 
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
@@ -20,6 +19,11 @@ class OrderCreateAPIView(CreateAPIView):
         self.perform_create(serializer)
 
         return Response(status=status.HTTP_201_CREATED)
+
+
+class OrderRetrieveAPIView(RetrieveAPIView):
+    queryset = Order.objects.all()
+    serializer_class = OrderReadSerializer
 
 
 class ProductRetrieveAPIView(RetrieveAPIView):

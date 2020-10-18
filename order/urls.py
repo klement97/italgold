@@ -1,7 +1,8 @@
 from django.urls import path
 
 from order.views import (
-    LeatherListAPIView, LeatherSerialListAPIView, OrderCreateAPIView, ProductCategoryListAPIView,
+    LeatherListAPIView, LeatherSerialListAPIView, OrderCreateAPIView, OrderRetrieveAPIView,
+    ProductCategoryListAPIView,
     ProductListAPIView, ProductRetrieveAPIView
     )
 
@@ -14,4 +15,5 @@ urlpatterns = [
     path('leather-serial/', LeatherSerialListAPIView.as_view(), name='leather-serial'),
 
     path('order/', OrderCreateAPIView.as_view(), name='order'),
+    path('order/<int:pk>/', OrderRetrieveAPIView.as_view(), name='order'),
     ]
