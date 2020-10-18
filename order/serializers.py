@@ -1,15 +1,15 @@
+from rest_framework import serializers
 from rest_framework.serializers import ModelSerializer
 
-from order.models import Leather
+from order.models import Leather, Order
 from order.models import LeatherSerial
-from order.models import Order
 from order.models import Product, ProductCategory
 
 
 class LeatherSerializer(ModelSerializer):
     class Meta:
         model = Leather
-        fields = ['id', 'code', 'serial', 'image']
+        fields = ['id', 'code', 'image']
 
 
 class LeatherSerialSerializer(ModelSerializer):
@@ -20,7 +20,18 @@ class LeatherSerialSerializer(ModelSerializer):
         fields = ['id', 'name', 'leathers']
 
 
-class OrderSerializer(ModelSerializer):
+class OrderReadSerializer(serializers.Serializer):
+    id = serializers.IntegerField()
+    first_name = serializers.CharField()
+    last_name = serializers.CharField()
+    phone = serializers.CharField()
+    address = serializers.CharField()
+    products = serializers.JSONField()
+    inner_leather = LeatherSerializer()
+    outer_leather = LeatherSerializer()
+
+
+class OrderWriteSerializer(ModelSerializer):
     class Meta:
         model = Order
         fields = [
