@@ -142,7 +142,7 @@ cython_debug/
 
 .env.py
 .idea
-#media
+media
 staticfiles
 db.json
 db.dump
