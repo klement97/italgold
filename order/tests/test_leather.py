@@ -3,8 +3,8 @@ from django.urls import reverse
 from model_bakery import baker
 
 from kral_kutu_backend.api_test_case import KKAPITestCase, faker
+from order.json_schemas import leather_schema, leather_serial_schema
 from order.models import Leather, LeatherSerial
-from order.schemas.leather import leather_schema, leather_serial_schema
 
 
 class TestLeatherList(KKAPITestCase):

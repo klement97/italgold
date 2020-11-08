@@ -26,3 +26,12 @@ RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
 COPY . /code/
+
+# create the app user
+RUN addgroup -S app && adduser -S app -G app
+
+# chown all the files to the app user
+RUN chown -R app:app /code/
+
+# change to the app user
+USER app

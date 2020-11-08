@@ -159,18 +159,11 @@ LANGUAGES = [
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
-# if not DEBUG:
-#    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-
-AWS_ACCESS_KEY_ID = 'AKIAU4LAKYYR3ORM6U2N'
-AWS_SECRET_ACCESS_KEY = '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'
-AWS_STORAGE_BUCKET_NAME = 'kral_kutu'
-AWS_QUERYSTRING_AUTH = False
-AWS_QUERYSTRING_EXPIRE = 3600
-AWS_S3_FILE_OVERWRITE = False
-AWS_S3_REGION_NAME = 'us-west-1'
-AWS_S3_ENDPOINT_URL = 'https://felix-cloud-shared-1-kral-kutu-335746352675' \
-                      '.s3-accesspoint.us-west-1.amazonaws.com'
+DEFAULT_FILE_STORAGE = 'storages.backends.dropbox.DropBoxStorage'
+DROPBOX_OAUTH2_TOKEN = 'cRJ8kk_tHEsAAAAAAAAAAcEaF4sa9CvqIg9EWwTxKSVQtLVJa30iqs00VuGrRU2Z'
+# DROPBOX_ROOT_PATH = '/'
+DROPBOX_TIMEOUT = 100
+DROPBOX_WRITE_MODE = 'add'
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')

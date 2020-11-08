@@ -4,8 +4,8 @@ from model_bakery import baker
 from rest_framework import status
 
 from kral_kutu_backend.api_test_case import KKAPITestCase, faker
+from order.json_schemas import product_category_schema, product_schema
 from order.models import Product, ProductCategory
-from order.schemas.product import product_category_schema, product_schema
 from order.tests.utils import create_product
 
 
