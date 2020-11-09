@@ -7,18 +7,10 @@ RUN mkdir /code
 
 WORKDIR /code
 
-# install psycopg2 dependencies
-#RUN apk update \
-#    && apk add postgresql-dev gcc python3-dev musl-dev
-RUN apk update \
-    && apk add --virtual build-deps gcc python3-dev musl-dev \
-    && apk add postgresql \
-    && apk add postgresql-dev \
-    && pip install psycopg2 \
-    && apk add jpeg-dev zlib-dev libjpeg \
-    && pip install Pillow \
-    && apk del build-deps
-#    && apk add tesseract-ocr libtesseract-dev
+RUN apk update && apk add --virtual build-deps gcc python3-dev musl-dev
+RUN apk add postgresql postgresql-dev && pip install psycopg2
+RUN apk add jpeg-dev zlib-dev libjpeg && pip install Pillow
+RUN apk del build-deps
 
 COPY requirements.txt /code/
 
