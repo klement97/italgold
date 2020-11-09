@@ -36,7 +36,7 @@ EXPOSE 8080
 
 COPY . /code/
 
-# create the app user
+# create the app user and group
 RUN addgroup -S app && adduser -S app -G app
 
 # chown all the files to the app user
