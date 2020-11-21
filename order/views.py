@@ -1,6 +1,4 @@
-from rest_framework import status
 from rest_framework.generics import CreateAPIView, ListAPIView, RetrieveAPIView
-from rest_framework.response import Response
 
 from order.filters import ProductFilter
 from order.models import Leather, LeatherSerial, Order
