@@ -18,7 +18,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
 
-from kral_kutu_backend.settings import DEBUG, MEDIA_ROOT, MEDIA_URL
+from kral_kutu_backend.settings import MEDIA_ROOT, MEDIA_URL
 
 urlpatterns = i18n_patterns(
         path('admin/', admin.site.urls),
