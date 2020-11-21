@@ -22,10 +22,10 @@ class Leather(LogicalDeleteModel):
     code = models.CharField(verbose_name='Code', max_length=30)
     image = models.ImageField(verbose_name='Image', blank=True, upload_to='leathers')
     serial = models.ForeignKey(
-            to=LeatherSerial,
-            on_delete=models.DO_NOTHING,
-            related_name='leathers'
-            )
+        to=LeatherSerial,
+        on_delete=models.DO_NOTHING,
+        related_name='leathers'
+    )
 
     class Meta:
         ordering = ["code"]
@@ -49,6 +49,11 @@ class ProductCategory(LogicalDeleteModel):
         return self.name
 
 
+class ProductQuerySet(models.QuerySet):
+    def get_id_price_mapping(self):
+        return {p.id: p.price for p in self}
+
+
 class Product(LogicalDeleteModel):
     image = models.ImageField(verbose_name='Image', upload_to='products')
     price = models.DecimalField(verbose_name='Price', decimal_places=3, max_digits=10,
@@ -59,10 +64,17 @@ class Product(LogicalDeleteModel):
                                  related_name='products',
                                  verbose_name='Category')
 
+    objects = ProductQuerySet.as_manager()
+
     class Meta:
         ordering = ["-id"]
         verbose_name = "Product"
         verbose_name_plural = "Products"
+
+    @staticmethod
+    def get_id_price_mapping(ids):
+        products = Product.objects.only('id', 'price').filter(id__in=set(ids))
+        return {p.id: p.price for p in products}
 
 
 class Order(LogicalDeleteModel, TrackedModel):

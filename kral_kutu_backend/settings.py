@@ -14,7 +14,6 @@ import os
 
 from django.utils.translation import gettext_lazy as _
 
-
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -38,17 +37,17 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles'
-    ]
+]
 
 THIRD_PART = [
     'corsheaders',
     'rest_framework',
     'django_filters',
-    ]
+]
 
 INTERNAL = [
     'order'
-    ]
+]
 
 INSTALLED_APPS += THIRD_PART
 INSTALLED_APPS += INTERNAL
@@ -63,7 +62,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    ]
+]
 
 CORS_ORIGIN_ALLOW_ALL = True
 
@@ -81,13 +80,13 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                ],
+            ],
             'libraries': {
                 'templatetags': 'order.templatetags.i18n_switcher'
-                }
-            },
+            }
         },
-    ]
+    },
+]
 
 WSGI_APPLICATION = 'kral_kutu_backend.wsgi.application'
 
@@ -102,8 +101,8 @@ DATABASES = {
         "PASSWORD": os.environ.get("SQL_PASSWORD", "postgres"),
         "HOST": os.environ.get("SQL_HOST", "localhost"),
         "PORT": os.environ.get("SQL_PORT", "5432"),
-        }
     }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -111,29 +110,29 @@ DATABASES = {
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-        },
+    },
     {
         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-        },
+    },
     {
         'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-        },
+    },
     {
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-        },
-    ]
+    },
+]
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.AllowAny',
-        ],
+    ],
     'DEFAULT_PAGINATION_CLASS': 'kral_kutu_backend.pagination.Pagination',
     'PAGE_SIZE': 10,
     'DEFAULT_FILTER_BACKENDS': (
         'django_filters.rest_framework.DjangoFilterBackend',
         'rest_framework.filters.OrderingFilter'
-        ),
-    }
+    ),
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
@@ -154,12 +153,13 @@ LANGUAGES = [
     ('en', _('English')),
     ('tr', _('Turkish')),
     ('sq', _('Albanian')),
-    ]
+]
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
-DEFAULT_FILE_STORAGE = 'storages.backends.dropbox.DropBoxStorage'
+if DEBUG is False:
+    DEFAULT_FILE_STORAGE = 'storages.backends.dropbox.DropBoxStorage'
 DROPBOX_OAUTH2_TOKEN = 'cRJ8kk_tHEsAAAAAAAAAAcEaF4sa9CvqIg9EWwTxKSVQtLVJa30iqs00VuGrRU2Z'
 # DROPBOX_ROOT_PATH = '/'
 DROPBOX_TIMEOUT = 100
@@ -169,7 +169,7 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'kral_kutu_backend/static')
-    ]
+]
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 MEDIA_URL = '/media/'

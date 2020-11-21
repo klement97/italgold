@@ -13,13 +13,6 @@ from order.serializers import ProductCategorySerializer, ProductSerializer
 class OrderCreateAPIView(CreateAPIView):
     serializer_class = OrderWriteSerializer
 
-    def create(self, request, *args, **kwargs):
-        serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        self.perform_create(serializer)
-
-        return Response(status=status.HTTP_201_CREATED)
-
 
 class OrderRetrieveAPIView(RetrieveAPIView):
     queryset = Order.objects.all()
