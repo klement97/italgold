@@ -24,7 +24,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'secret_key'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -158,8 +158,8 @@ LANGUAGES = [
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
-if DEBUG is False:
-    DEFAULT_FILE_STORAGE = 'storages.backends.dropbox.DropBoxStorage'
+# if DEBUG is False:
+DEFAULT_FILE_STORAGE = 'storages.backends.dropbox.DropBoxStorage'
 DROPBOX_OAUTH2_TOKEN = 'cRJ8kk_tHEsAAAAAAAAAAcEaF4sa9CvqIg9EWwTxKSVQtLVJa30iqs00VuGrRU2Z'
 # DROPBOX_ROOT_PATH = '/'
 DROPBOX_TIMEOUT = 100
