@@ -21,10 +21,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'secret_key'
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = bool(int(os.getenv('DEBUG', default=0)))
 
 ALLOWED_HOSTS = ['*']
 
@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles'
     ]
 
-THIRD_PART = [
+THIRD_PARTY = [
     'corsheaders',
     'rest_framework',
     'django_filters',
@@ -49,7 +49,7 @@ INTERNAL = [
     'order'
     ]
 
-INSTALLED_APPS += THIRD_PART
+INSTALLED_APPS += THIRD_PARTY
 INSTALLED_APPS += INTERNAL
 
 MIDDLEWARE = [
@@ -95,12 +95,12 @@ WSGI_APPLICATION = 'kral_kutu_backend.wsgi.application'
 
 DATABASES = {
     "default": {
-        "ENGINE": os.environ.get("SQL_ENGINE", "django.db.backends.sqlite3"),
-        "NAME": os.environ.get("SQL_DATABASE", os.path.join(BASE_DIR, "db.sqlite3")),
-        "USER": os.environ.get("SQL_USER", "postgres"),
-        "PASSWORD": os.environ.get("SQL_PASSWORD", "postgres"),
-        "HOST": os.environ.get("SQL_HOST", "localhost"),
-        "PORT": os.environ.get("SQL_PORT", "5432"),
+        "ENGINE": os.getenv("SQL_ENGINE"),
+        "NAME": os.getenv("SQL_DATABASE"),
+        "USER": os.getenv("SQL_USER"),
+        "PASSWORD": os.getenv("SQL_PASSWORD"),
+        "HOST": os.getenv("SQL_HOST"),
+        "PORT": os.getenv("SQL_PORT"),
         }
     }
 
@@ -155,26 +155,18 @@ LANGUAGES = [
     ('sq', _('Albanian')),
     ]
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.0/howto/static-files/
-
-# if DEBUG is False:
-DEFAULT_FILE_STORAGE = 'storages.backends.dropbox.DropBoxStorage'
-DROPBOX_OAUTH2_TOKEN = 'cRJ8kk_tHEsAAAAAAAAAAcEaF4sa9CvqIg9EWwTxKSVQtLVJa30iqs00VuGrRU2Z'
+# DEFAULT_FILE_STORAGE = 'storages.backends.dropbox.DropBoxStorage'
+# DROPBOX_OAUTH2_TOKEN = 'cRJ8kk_tHEsAAAAAAAAAAcEaF4sa9CvqIg9EWwTxKSVQtLVJa30iqs00VuGrRU2Z'
 # DROPBOX_ROOT_PATH = '/'
-DROPBOX_TIMEOUT = 100
-DROPBOX_WRITE_MODE = 'add'
+# DROPBOX_TIMEOUT = 100
+# DROPBOX_WRITE_MODE = 'add'
 
-STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'kral_kutu_backend/static')
-    ]
+STATIC_URL = '/staticfiles/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles/')
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
-MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'mediafiles/')
+MEDIA_URL = '/mediafiles/'
 
-if not DEBUG:
-    import django_heroku
-
-    django_heroku.settings(locals())
+# if not DEBUG:
+#     import django_heroku
+#     django_heroku.settings(locals())
