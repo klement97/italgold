@@ -1,57 +1,40 @@
-FROM python:3.8.3-alpine as builder
+FROM python:3.9-alpine as base
 
-# set work directory
+ENV PYTHONDONTWRITEBYTECODE 1
+
+COPY requirements.txt ./
+RUN apk add --update --no-cache --virtual .build-deps \
+    build-base \
+    postgresql-dev \
+    libffi-dev \
+    python3-dev \
+    libffi-dev \
+    jpeg-dev \
+    zlib-dev \
+    musl-dev \
+    libpq \
+    && pip install --no-cache-dir -r requirements.txt \
+    && find /usr/local \
+        \( -type d -a -name test -o -name tests \) \
+        -o \( -type f -a -name '*.pyc' -o -name '*.pyo' \) \
+        -exec rm -rf '{}' +
+
+FROM python:3.9-alpine
+
+RUN mkdir -p usr/src/app
+
+RUN apk add --update --no-cache libpq libjpeg-turbo
+
+COPY --from=base /usr/local/lib/python3.9/site-packages/ /usr/local/lib/python3.9/site-packages/
+COPY --from=base /usr/local/bin/ /usr/local/bin/
+
 WORKDIR /usr/src/app
 
-# set environment variables
-ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
+ENV PYTHONDONTWRITEBYTECODE 1
+EXPOSE 8080
 
-# install psycopg2 dependencies
-RUN apk update \
-    && apk add postgresql-dev gcc python3-dev musl-dev
-
-# lint
-RUN pip install --upgrade pip
-RUN pip install flake8
 COPY . .
-RUN flake8 --ignore=E501,F401 .
 
-# install dependencies
-COPY ./requirements.txt .
-RUN pip wheel --no-cache-dir --no-deps --wheel-dir /usr/src/app/wheels -r requirements.txt
-
-FROM python:3.8.3-alpine
-
-# create directory for the app user
-RUN mkdir -p /home/app
-
-# create the app user
-RUN addgroup -S app && adduser -S app -G app
-
-# create the appropriate directories
-ENV HOME=/home/app
-ENV APP_HOME=/home/app/web
-RUN mkdir $APP_HOME
-WORKDIR $APP_HOME
-
-# install dependencies
-RUN apk update && apk add libpq
-COPY --from=builder /usr/src/app/wheels /wheels
-COPY --from=builder /usr/src/app/requirements.txt .
-RUN pip install --no-cache /wheels/*
-
-# copy entrypoint-prod.sh
-COPY ./entrypoint.prod.sh $APP_HOME
-
-# copy project
-COPY . $APP_HOME
-
-# chown all the files to the app user
-RUN chown -R app:app $APP_HOME
-
-# change to the app user
-USER app
-
-# run entrypoint.prod.sh
-ENTRYPOINT ["/home/app/web/entrypoint.prod.sh"]
+RUN ["chmod", "+x", "/usr/src/app/entrypoint.sh"]
+ENTRYPOINT ["sh", "/usr/src/app/entrypoint.sh"]
