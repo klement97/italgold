@@ -155,18 +155,13 @@ LANGUAGES = [
     ('sq', _('Albanian')),
     ]
 
-# DEFAULT_FILE_STORAGE = 'storages.backends.dropbox.DropBoxStorage'
-# DROPBOX_OAUTH2_TOKEN = 'cRJ8kk_tHEsAAAAAAAAAAcEaF4sa9CvqIg9EWwTxKSVQtLVJa30iqs00VuGrRU2Z'
-# DROPBOX_ROOT_PATH = '/'
-# DROPBOX_TIMEOUT = 100
-# DROPBOX_WRITE_MODE = 'add'
-
 STATIC_URL = '/staticfiles/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles/')
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'mediafiles/')
 MEDIA_URL = '/mediafiles/'
 
-# if not DEBUG:
-#     import django_heroku
-#     django_heroku.settings(locals())
+if not DEBUG:
+    import django_heroku
+
+    django_heroku.settings(locals())
