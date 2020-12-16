@@ -155,8 +155,7 @@ LANGUAGES = [
     ('sq', _('Albanian')),
     ]
 
-# if not DEBUG:
-if True:
+if not DEBUG:
     DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
     AWS_ACCESS_KEY_ID = 'AKIAZNQEYCRAO62G4PH3'
     AWS_SECRET_ACCESS_KEY = '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'
