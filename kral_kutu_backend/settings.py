@@ -155,6 +155,17 @@ LANGUAGES = [
     ('sq', _('Albanian')),
     ]
 
+# if not DEBUG:
+if True:
+    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+    AWS_ACCESS_KEY_ID = 'AKIAZNQEYCRAO62G4PH3'
+    AWS_SECRET_ACCESS_KEY = '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'
+    AWS_STORAGE_BUCKET_NAME = 'italgold'
+    AWS_DEFAULT_ACL = None
+    AWS_QUERYSTRING_AUTH = True
+    AWS_QUERYSTRING_EXPIRE = 3600  # seconds
+    AWS_S3_FILE_OVERWRITE = False
+
 STATIC_URL = '/staticfiles/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles/')
 
