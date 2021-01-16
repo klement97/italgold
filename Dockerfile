@@ -35,12 +35,3 @@ ENV PYTHONPATH /code:$PYTHONPATH
 EXPOSE 8080
 
 COPY . /code/
-
-# create the app user and group
-RUN addgroup -S app && adduser -S app -G app
-
-# chown all the files to the app user
-RUN chown -R app:app /code/
-
-# change to the app user
-USER app

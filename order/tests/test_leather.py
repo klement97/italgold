@@ -4,7 +4,6 @@ from model_bakery import baker
 
 from kral_kutu_backend.api_test_case import KKAPITestCase, faker
 from order.json_schemas import leather_schema, leather_serial_schema
-from order.models import Leather, LeatherSerial
 
 
 class TestLeatherList(KKAPITestCase):
@@ -12,8 +11,8 @@ class TestLeatherList(KKAPITestCase):
 
     @classmethod
     def setUpTestData(cls):
-        baker.make(Leather, _quantity=10, deleted=True)
-        cls.leathers = baker.make(Leather,
+        baker.make('Leather', _quantity=10, deleted=True)
+        cls.leathers = baker.make('Leather',
                                   _quantity=25,
                                   image=faker.file_name(),
                                   deleted=False)
@@ -43,8 +42,8 @@ class TestLeatherSerialList(KKAPITestCase):
 
     @classmethod
     def setUpTestData(cls):
-        baker.make(LeatherSerial, _quantity=10, deleted=True)
-        cls.serials = baker.make(LeatherSerial,
+        baker.make('LeatherSerial', _quantity=10, deleted=True)
+        cls.serials = baker.make('LeatherSerial',
                                  _quantity=25,
                                  deleted=False
                                  )
