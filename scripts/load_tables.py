@@ -1,11 +1,12 @@
 import os
 
-from kral_kutu_backend.settings import BASE_DIR
+from django.conf import settings
+
 from order.models import Product, ProductCategory
 
 
 def create_tables():
-    folder_dir = os.path.join(BASE_DIR, 'KRAL_KUTU/TABLALAR')
+    folder_dir = os.path.join(settings.BASE_DIR, 'KRAL_KUTU/TABLALAR')
     image_paths = os.listdir(folder_dir)
     category = ProductCategory.objects.get(name='Tabaka')
 

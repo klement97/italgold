@@ -1,11 +1,10 @@
 import json
 
+from django.conf import settings
 from django.urls import reverse
 from faker import Faker
 from rest_framework import status
 from rest_framework.test import APITestCase
-
-from kral_kutu_backend.settings import REST_FRAMEWORK
 
 faker = Faker()
 
@@ -59,11 +58,12 @@ class KKAPITestCase(APITestCase):
             for field in should_be_in_response:
                 self.assertIn(field, data)
                 if field == 'id':
+                    # id field is not posted for create operation.
                     continue
                 self.assertEqual(data[field], posted_data[field])
 
     def list_assertions(self, paginated, response_data_count=None):
-        page_size = REST_FRAMEWORK['PAGE_SIZE']
+        page_size = settings.REST_FRAMEWORK['PAGE_SIZE']
         query_params = {'page': 1} if paginated else None
 
         self.response = self.get(data=query_params)

@@ -8,6 +8,9 @@ __pycache__/
 # C extensions
 *.so
 
+csv_files
+mediafiles
+
 # Distribution / packaging
 .Python
 build/
@@ -142,7 +145,7 @@ cython_debug/
 
 .env.py
 .idea
-media
+mediafiles
 staticfiles
 db.json
 db.dump
