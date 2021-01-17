@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 import os
 
 import sentry_sdk
+from corsheaders.defaults import default_headers
 from sentry_sdk.integrations.django import DjangoIntegration
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -25,10 +26,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.getenv('SECRET_KEY', 'foo')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = bool(int(os.getenv('DEBUG', default=0)))
-
-DB_USER = os.getenv('DB_USER')
-DB_PASSWORD = os.getenv('DB_PASSWORD')
+DEBUG = bool(int(os.getenv('DEBUG', default=1)))
 
 if not DEBUG:
     sentry_sdk.init(
@@ -42,6 +40,8 @@ if not DEBUG:
             )
 
 ALLOWED_HOSTS = ['*']
+
+CORS_ALLOW_HEADERS = list(default_headers) + ['sentry-trace']
 
 # Application definition
 
@@ -114,17 +114,6 @@ DATABASES = {
         'NAME': 'db.sqlite3',
         }
     }
-
-# DATABASES = {
-#     "default": {
-#         "ENGINE": os.getenv("SQL_ENGINE"),
-#         "NAME": os.getenv("SQL_DATABASE"),
-#         "USER": os.getenv("SQL_USER"),
-#         "PASSWORD": os.getenv("SQL_PASSWORD"),
-#         "HOST": os.getenv("SQL_HOST"),
-#         "PORT": os.getenv("SQL_PORT"),
-#         }
-#     }
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
