@@ -24,6 +24,9 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'foo')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = bool(int(os.getenv('DEBUG', default=0)))
 
+DB_USER = os.getenv('DB_USER')
+DB_PASSWORD = os.getenv('DB_PASSWORD')
+
 ALLOWED_HOSTS = ['*']
 
 # Application definition
