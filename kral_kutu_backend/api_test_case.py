@@ -16,6 +16,7 @@ class KKAPITestCase(APITestCase):
 
     url attr. must be set by the Subclass.
     """
+
     url = None
 
     def __init__(self, *args, **kwargs):
