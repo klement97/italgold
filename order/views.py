@@ -60,5 +60,5 @@ def download_db_dump(request):
             query_params['password'] == settings.DB_PASSWORD):
         return bad_request(request, ValueError)
 
-    with open('./db.json', 'r') as dump:
+    with open(f'{settings.BASE_DIR}/db.json', 'r') as dump:
         return HttpResponse(dump, content_type='applications/json')
