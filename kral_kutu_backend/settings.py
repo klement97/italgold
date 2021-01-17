@@ -12,7 +12,9 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 import os
 
+import django_heroku
 import sentry_sdk
+from corsheaders.defaults import default_headers
 from sentry_sdk.integrations.django import DjangoIntegration
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -25,10 +27,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.getenv('SECRET_KEY', 'foo')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = bool(int(os.getenv('DEBUG', default=0)))
-
-DB_USER = os.getenv('DB_USER')
-DB_PASSWORD = os.getenv('DB_PASSWORD')
+DEBUG = bool(int(os.getenv('DEBUG', default=1)))
 
 if not DEBUG:
     sentry_sdk.init(
@@ -42,6 +41,8 @@ if not DEBUG:
             )
 
 ALLOWED_HOSTS = ['*']
+
+CORS_ALLOW_HEADERS = list(default_headers) + ['sentry-trace']
 
 # Application definition
 
@@ -107,13 +108,6 @@ WSGI_APPLICATION = 'kral_kutu_backend.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': 'db.sqlite3',
-#         }
-#     }
 
 DATABASES = {
     "default": {
@@ -192,5 +186,5 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles/')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'mediafiles/')
 MEDIA_URL = '/mediafiles/'
 
-import django_heroku
+
 django_heroku.settings(locals())
