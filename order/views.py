@@ -1,7 +1,3 @@
-from django.conf import settings
-from django.http import HttpResponse
-from rest_framework.decorators import api_view
-from rest_framework.exceptions import bad_request
 from rest_framework.generics import CreateAPIView, ListAPIView, RetrieveAPIView
 
 from order.filters import ProductFilter
@@ -48,17 +44,3 @@ class LeatherListAPIView(ListAPIView):
 class LeatherSerialListAPIView(ListAPIView):
     serializer_class = LeatherSerialSerializer
     queryset = LeatherSerial.objects.prefetch_related('leathers').filter(deleted=False)
-
-
-@api_view(['GET'])
-def download_db_dump(request):
-    query_params = request.query_params
-    if 'user' not in query_params or 'password' not in query_params:
-        return bad_request(request, KeyError)
-
-    if not (query_params['user'] == settings.DB_USER and
-            query_params['password'] == settings.DB_PASSWORD):
-        return bad_request(request, ValueError)
-
-    with open(f'{settings.BASE_DIR}/db.json', 'r') as dump:
-        return HttpResponse(dump, content_type='application/json')
