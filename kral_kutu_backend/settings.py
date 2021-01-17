@@ -94,23 +94,23 @@ WSGI_APPLICATION = 'kral_kutu_backend.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'db.sqlite3',
-        }
-    }
-
 # DATABASES = {
-#     "default": {
-#         "ENGINE": os.getenv("SQL_ENGINE"),
-#         "NAME": os.getenv("SQL_DATABASE"),
-#         "USER": os.getenv("SQL_USER"),
-#         "PASSWORD": os.getenv("SQL_PASSWORD"),
-#         "HOST": os.getenv("SQL_HOST"),
-#         "PORT": os.getenv("SQL_PORT"),
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': 'db.sqlite3',
 #         }
 #     }
+
+DATABASES = {
+    "default": {
+        "ENGINE": os.getenv("SQL_ENGINE"),
+        "NAME": os.getenv("SQL_DATABASE"),
+        "USER": os.getenv("SQL_USER"),
+        "PASSWORD": os.getenv("SQL_PASSWORD"),
+        "HOST": os.getenv("SQL_HOST"),
+        "PORT": os.getenv("SQL_PORT"),
+        }
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
