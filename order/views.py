@@ -61,4 +61,4 @@ def download_db_dump(request):
         return bad_request(request, ValueError)
 
     with open(f'{settings.BASE_DIR}/db.json', 'r') as dump:
-        return HttpResponse(dump, content_type='applications/json')
+        return HttpResponse(dump, content_type='application/json')
