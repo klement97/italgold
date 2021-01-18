@@ -4,6 +4,7 @@ from django.db import models
 from django.db.models import JSONField
 
 from common.models import LogicalDeleteModel, TrackedModel
+from common.utils import send_order_invoice_email
 
 
 class LeatherSerial(LogicalDeleteModel):
@@ -106,3 +107,7 @@ class Order(LogicalDeleteModel, TrackedModel):
 
     def __str__(self):
         return '%s - %s' % (self.first_name, self.last_name)
+
+    def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
+        super().save(force_insert, force_update, using, update_fields)
+        send_order_invoice_email(self)

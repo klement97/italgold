@@ -151,3 +151,4 @@ db.json
 db.dump
 KRAL_KUTU
 *migrations*
+sendgrid.env
