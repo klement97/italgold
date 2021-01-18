@@ -1,7 +1,14 @@
+{% extends "email/base.html" %}
+
 <div>
-    <p>Porosia me numër <b>{{ order_identifier }}</b> është ruajtur me sukses.</p>
-    <p>Për të shkarkuar faturën vizitoni <a href="{{ invoice_url }}">këtu</a>.</p>
-    <br>
-    <p>Faleminderit,</p>
-    <p>Italgold</p>
+    {% block header %}
+        <p>Porosia me numër <b>{{ order_identifier }}</b> është ruajtur me sukses.</p>
+    {% endblock %}
+
+    {% block content %}
+        <p>Për të shkarkuar faturën vizitoni <a href="{{ invoice_url }}">këtu</a>.</p>
+        <br>
+        <p>Faleminderit,</p>
+        <p>Italgold</p>
+    {% endblock %}
 </div>
