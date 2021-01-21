@@ -23,21 +23,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv('SECRET_KEY', 'foo')
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = bool(int(os.getenv('DEBUG', default=1)))
-
-if not DEBUG:
-    sentry_sdk.init(
-            dsn=os.getenv('SENTRY_DSN'),
-            integrations=[DjangoIntegration()],
-            traces_sample_rate=1.0,
-
-            # If you wish to associate users to errors (assuming you are using
-            # django.contrib.auth) you may enable sending PII data.
-            send_default_pii=True
-            )
+DEBUG = bool(int(os.getenv('DEBUG', 0)))
 
 ALLOWED_HOSTS = ['*']
 
@@ -183,3 +172,12 @@ if not DEBUG:
     import django_heroku
 
     django_heroku.settings(locals())
+    sentry_sdk.init(
+            dsn=os.getenv('SENTRY_DSN'),
+            integrations=[DjangoIntegration()],
+            traces_sample_rate=1.0,
+
+            # If you wish to associate users to errors (assuming you are using
+            # django.contrib.auth) you may enable sending PII data.
+            send_default_pii=True
+            )
