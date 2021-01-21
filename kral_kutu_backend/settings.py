@@ -17,16 +17,17 @@ from corsheaders.defaults import default_headers
 from sentry_sdk.integrations.django import DjangoIntegration
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+from kral_kutu_backend import production_settings
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = bool(int(os.getenv('DEBUG', 0)))
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -169,15 +170,4 @@ FRONTEND_URL = 'https://italgold.herokuapp.com'
 FRONTEND_INVOICE_URL = f'{FRONTEND_URL}/order/post-checkout'
 
 if not DEBUG:
-    import django_heroku
-
-    django_heroku.settings(locals())
-    sentry_sdk.init(
-            dsn=os.getenv('SENTRY_DSN'),
-            integrations=[DjangoIntegration()],
-            traces_sample_rate=1.0,
-
-            # If you wish to associate users to errors (assuming you are using
-            # django.contrib.auth) you may enable sending PII data.
-            send_default_pii=True
-            )
+    production_settings.settings(locals())
