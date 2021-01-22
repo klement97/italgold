@@ -30,8 +30,8 @@ class TestLeatherList(KKAPITestCase):
     def test_json_schema(self):
         response = self.get()
 
-        [self.assertTrue(self.v.validate(leather))
-         for leather in response.data]
+        for leather in response.data:
+            self.assertTrue(self.v.validate(leather))
 
     def test_num_of_queries(self):
         self.assertNumQueries(1, self.get)
@@ -61,5 +61,5 @@ class TestLeatherSerialList(KKAPITestCase):
     def test_json_schema(self):
         response = self.get()
 
-        [self.assertTrue(self.v.validate(serial))
-         for serial in response.data]
+        for serial in response.data:
+            self.assertTrue(self.v.validate(serial))

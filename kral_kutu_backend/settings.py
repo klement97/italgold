@@ -165,8 +165,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'mediafiles/')
 MEDIA_URL = '/mediafiles/'
 
 DEFAULT_FROM_EMAIL = 'italgold.dev@gmail.com'
-ADMINS = ['klementomeri97@gmail.com']
-MANAGERS = ['klementomeri97@gmail.com']
 
 FRONTEND_URL = 'https://italgold.herokuapp.com'
 FRONTEND_INVOICE_URL = f'{FRONTEND_URL}/order/post-checkout'

@@ -39,7 +39,7 @@ class OrderWriteSerializer(ModelSerializer):
         fields = [
             'id', 'first_name', 'last_name', 'phone', 'address', 'products',
             'inner_leather', 'outer_leather'
-        ]
+            ]
 
     def create(self, validated_data):
         products = validated_data.pop('products')

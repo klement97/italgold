@@ -1,14 +1,14 @@
 from model_bakery import baker
 
 from kral_kutu_backend.api_test_case import faker
-from order.models import Leather, Product, ProductCategory
+from order.models import Product
 
 
 def create_product():
     return Product.objects.create(
             image=faker.file_name(),
-            price=faker.pydecimal(),
-            category=baker.make(ProductCategory),
+            price=faker.pydecimal(left_digits=7, right_digits=3),
+            category=baker.make('ProductCategory'),
             properties={"code": "P-001"}
             )
 
@@ -38,16 +38,16 @@ def get_valid_order_create_dict():
     return {
         'first_name': faker.first_name(),
         'last_name': faker.last_name(),
-        'phone': faker.phone_number(),
+        'phone': faker.phone_number()[:20],
         'address': faker.address(),
-        'inner_leather': baker.make(Leather).id,
-        'outer_leather': baker.make(Leather).id,
+        'inner_leather': baker.make('Leather').id,
+        'outer_leather': baker.make('Leather').id,
         'products': get_valid_products_dict()
         }
 
 
 def get_invalid_order_create_dict():
-    leather = baker.make(Leather)
+    leather = baker.make('Leather')
     return {
         'first_name': faker.sentence(nb_words=30),
         'last_name': faker.sentence(nb_words=30),
