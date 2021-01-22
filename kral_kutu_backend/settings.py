@@ -27,7 +27,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
+
+SECRET_KEY = 'foo'
 
 ALLOWED_HOSTS = ['*']
 
@@ -162,7 +164,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles/')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'mediafiles/')
 MEDIA_URL = '/mediafiles/'
 
-DEFAULT_FROM_EMAIL = 'no-reply@italgold.com'
+DEFAULT_FROM_EMAIL = 'italgold.dev@gmail.com'
 ADMINS = ['klementomeri97@gmail.com']
 MANAGERS = ['klementomeri97@gmail.com']
 
