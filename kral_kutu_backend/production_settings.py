@@ -1,4 +1,5 @@
 import os
+from urllib.parse import urlparse
 
 import django_heroku
 import sentry_sdk
@@ -29,3 +30,15 @@ def settings(config):
     config['AWS_QUERYSTRING_AUTH'] = False
     config['AWS_QUERYSTRING_EXPIRE'] = 3600  # seconds
     config['AWS_S3_FILE_OVERWRITE'] = False
+
+    redis_url = urlparse(os.environ.get('REDISCLOUD_URL'))
+    config['CACHES'] = {
+        'default': {
+            'BACKEND': 'redis_cache.RedisCache',
+            'LOCATION': f'{redis_url.hostname}:{redis_url.port}',
+            'OPTIONS': {
+                'PASSWORD': redis_url.password,
+                'DB': 0,
+                }
+            }
+        }
