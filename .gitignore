@@ -145,9 +145,11 @@ cython_debug/
 
 .env.py
 .idea
-mediafiles
 staticfiles
 db.json
 db.dump
 KRAL_KUTU
 *migrations*
+.env
+*.env
+*env

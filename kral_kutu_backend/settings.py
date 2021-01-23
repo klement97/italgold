@@ -12,33 +12,24 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 import os
 
-import django_heroku
 import sentry_sdk
 from corsheaders.defaults import default_headers
 from sentry_sdk.integrations.django import DjangoIntegration
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+from kral_kutu_backend import production_settings
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv('SECRET_KEY', 'foo')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = bool(int(os.getenv('DEBUG', default=1)))
+DEBUG = False
 
-if not DEBUG:
-    sentry_sdk.init(
-            dsn=os.getenv('SENTRY_DSN'),
-            integrations=[DjangoIntegration()],
-            traces_sample_rate=1.0,
-
-            # If you wish to associate users to errors (assuming you are using
-            # django.contrib.auth) you may enable sending PII data.
-            send_default_pii=True
-            )
+SECRET_KEY = 'foo'
 
 ALLOWED_HOSTS = ['*']
 
@@ -110,13 +101,9 @@ WSGI_APPLICATION = 'kral_kutu_backend.wsgi.application'
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 DATABASES = {
-    "default": {
-        "ENGINE": os.getenv("SQL_ENGINE"),
-        "NAME": os.getenv("SQL_DATABASE"),
-        "USER": os.getenv("SQL_USER"),
-        "PASSWORD": os.getenv("SQL_PASSWORD"),
-        "HOST": os.getenv("SQL_HOST"),
-        "PORT": os.getenv("SQL_PORT"),
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'db.sqlite3',
         }
     }
 
@@ -171,20 +158,16 @@ LANGUAGES = [
     ('sq', 'Albanian'),
     ]
 
-DEFAULT_FILE_STORAGE = os.getenv('DEFAULT_FILE_STORAGE')
-AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
-AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
-AWS_STORAGE_BUCKET_NAME = os.getenv('AWS_STORAGE_BUCKET_NAME')
-AWS_DEFAULT_ACL = None
-AWS_QUERYSTRING_AUTH = False
-AWS_QUERYSTRING_EXPIRE = 3600  # seconds
-AWS_S3_FILE_OVERWRITE = False
-
 STATIC_URL = '/staticfiles/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles/')
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'mediafiles/')
 MEDIA_URL = '/mediafiles/'
 
+DEFAULT_FROM_EMAIL = 'italgold.dev@gmail.com'
 
-django_heroku.settings(locals())
+FRONTEND_URL = 'https://italgold.herokuapp.com'
+FRONTEND_INVOICE_URL = f'{FRONTEND_URL}/order/post-checkout'
+
+if not DEBUG:
+    production_settings.settings(locals())

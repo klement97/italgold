@@ -1,9 +1,11 @@
-from django.contrib.postgres.fields import ArrayField
+from typing import Union
+
 from django.core.validators import MinValueValidator
 from django.db import models
-from django.db.models import JSONField
+from django.db.models import JSONField, QuerySet
 
 from common.models import LogicalDeleteModel, TrackedModel
+from common.utils import send_order_invoice_email
 
 
 class LeatherSerial(LogicalDeleteModel):
@@ -50,6 +52,9 @@ class ProductCategory(LogicalDeleteModel):
 
 
 class ProductQuerySet(models.QuerySet):
+    def filter(self, *args, **kwargs) -> Union['ProductQuerySet', QuerySet['Product']]:
+        return super().filter(*args, **kwargs)
+
     def get_id_price_mapping(self) -> dict[int, float]:
         return {p.id: p.price for p in self}
 
@@ -87,7 +92,7 @@ class Order(LogicalDeleteModel, TrackedModel):
     address = models.CharField(verbose_name='Address', max_length=254)
     email = models.EmailField(verbose_name='Email', max_length=254, blank=True)
 
-    products = ArrayField(JSONField(verbose_name='Product details'))
+    products = models.JSONField(verbose_name='Product details')
     inner_leather = models.ForeignKey(to=Leather,
                                       on_delete=models.CASCADE,
                                       related_name='inner_orders',
@@ -106,3 +111,7 @@ class Order(LogicalDeleteModel, TrackedModel):
 
     def __str__(self):
         return '%s - %s' % (self.first_name, self.last_name)
+
+    def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
+        super().save(force_insert, force_update, using, update_fields)
+        # send_order_invoice_email(self)

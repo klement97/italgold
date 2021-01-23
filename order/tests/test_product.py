@@ -5,7 +5,7 @@ from rest_framework import status
 
 from kral_kutu_backend.api_test_case import KKAPITestCase, faker
 from order.json_schemas import product_category_schema, product_schema
-from order.models import Product, ProductCategory
+from order.models import Product
 from order.tests.utils import create_product
 
 
@@ -65,8 +65,10 @@ class TestProductList(KKAPITestCase):
 
     @classmethod
     def setUpTestData(cls):
-        cls.products = baker.make(Product, _quantity=25, image=faker.file_name(), deleted=False)
-        baker.make(Product, _quantity=15, image=faker.file_name(), deleted=True)
+        cls.products = baker.make('Product', _quantity=25, image=faker.file_name(),
+                                  properties={"code": "P-001"}, deleted=False)
+        baker.make('Product', _quantity=15, image=faker.file_name(), properties={"code": "P-001"},
+                   deleted=True)
 
     def setUp(self) -> None:
         self.v = Validator(product_schema)
@@ -89,8 +91,9 @@ class TestProductList(KKAPITestCase):
         Ensure that the response schema is valid.
         """
         response = self.get()
-        [self.assertTrue(self.v.validate(product))
-         for product in response.data]
+
+        for product in response.data:
+            self.assertTrue(self.v.validate(product))
 
     def test_num_of_queries(self):
         """
@@ -106,8 +109,8 @@ class TestProductCategoryList(KKAPITestCase):
 
     @classmethod
     def setUpTestData(cls):
-        baker.make(ProductCategory, _quantity=10, deleted=True)
-        cls.product_categories = baker.make(ProductCategory,
+        baker.make('ProductCategory', _quantity=10, deleted=True)
+        cls.product_categories = baker.make('ProductCategory',
                                             _quantity=25,
                                             deleted=False)
 
