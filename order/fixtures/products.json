@@ -1006,5 +1006,19 @@
     },
     "category": 3
   }
+},
+{
+  "model": "order.product",
+  "pk": 99,
+  "fields": {
+    "deleted": false,
+    "image": "products/P12.JPG",
+    "price": "26.000",
+    "properties": {
+      "code": "P12",
+      "codes": ["P12-1", "P12-2", "P12-3", "P12-4", "P12-5", "P12-6"]
+    },
+    "category": 5
+  }
 }
 ]
