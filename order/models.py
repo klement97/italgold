@@ -1,11 +1,10 @@
 from typing import Union
 
+from django.contrib.postgres.fields import ArrayField
 from django.core.validators import MinValueValidator
 from django.db import models
-from django.db.models import JSONField, QuerySet
 
 from common.models import LogicalDeleteModel, TrackedModel
-from common.utils import send_order_invoice_email
 
 
 class LeatherSerial(LogicalDeleteModel):
@@ -52,7 +51,7 @@ class ProductCategory(LogicalDeleteModel):
 
 
 class ProductQuerySet(models.QuerySet):
-    def filter(self, *args, **kwargs) -> Union['ProductQuerySet', QuerySet['Product']]:
+    def filter(self, *args, **kwargs) -> Union['ProductQuerySet', models.QuerySet['Product']]:
         return super().filter(*args, **kwargs)
 
     def get_id_price_mapping(self) -> dict[int, float]:
@@ -66,7 +65,8 @@ class Product(LogicalDeleteModel):
     image = models.ImageField(verbose_name='Image', upload_to='products')
     price = models.DecimalField(verbose_name='Price', decimal_places=3, max_digits=10,
                                 validators=[MinValueValidator(0)])
-    properties = JSONField('Properties', help_text='Stores all of the product specific properties.')
+    properties = models.JSONField('Properties', help_text='Stores all of the product specific '
+                                                          'properties.')
     category = models.ForeignKey(to=ProductCategory,
                                  on_delete=models.DO_NOTHING,
                                  related_name='products',
@@ -92,7 +92,7 @@ class Order(LogicalDeleteModel, TrackedModel):
     address = models.CharField(verbose_name='Address', max_length=254)
     email = models.EmailField(verbose_name='Email', max_length=254, blank=True)
 
-    products = models.JSONField(verbose_name='Product details')
+    products = ArrayField(models.JSONField(verbose_name='Product details'))
     inner_leather = models.ForeignKey(to=Leather,
                                       on_delete=models.CASCADE,
                                       related_name='inner_orders',

@@ -129,7 +129,7 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.AllowAny',
         ],
-    'DEFAULT_PAGINATION_CLASS': 'kral_kutu_backend.pagination.Pagination',
+    'DEFAULT_PAGINATION_CLASS': 'common.pagination.Pagination',
     'PAGE_SIZE': 10,
     'DEFAULT_FILTER_BACKENDS': (
         'django_filters.rest_framework.DjangoFilterBackend',

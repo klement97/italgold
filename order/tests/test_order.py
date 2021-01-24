@@ -1,7 +1,7 @@
 from django.urls import reverse
 from rest_framework import status
 
-from kral_kutu_backend.api_test_case import KKAPITestCase
+from common.api_test_case import KKAPITestCase
 from order.models import Order
 from order.tests.utils import get_invalid_order_create_dict, get_valid_order_create_dict
 
