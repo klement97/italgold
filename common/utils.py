@@ -7,8 +7,6 @@ from sendgrid.helpers.mail import Mail
 
 
 def send_order_invoice_email(order):
-    if settings.DEBUG:
-        return
     to_emails = [
         # 'cimi-omeri@hotmail.com',
         'klementomeri97@gmail.com',

@@ -5,6 +5,7 @@ from django.core.validators import MinValueValidator
 from django.db import models
 
 from common.models import LogicalDeleteModel, TrackedModel
+from common.utils import send_order_invoice_email
 
 
 class LeatherSerial(LogicalDeleteModel):
@@ -114,4 +115,4 @@ class Order(LogicalDeleteModel, TrackedModel):
 
     def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
         super().save(force_insert, force_update, using, update_fields)
-        # send_order_invoice_email(self)
+        send_order_invoice_email(self)
