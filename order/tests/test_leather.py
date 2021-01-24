@@ -2,7 +2,7 @@ from cerberus import Validator
 from django.urls import reverse
 from model_bakery import baker
 
-from kral_kutu_backend.api_test_case import KKAPITestCase, faker
+from common.api_test_case import KKAPITestCase, faker
 from order.json_schemas import leather_schema, leather_serial_schema
 
 

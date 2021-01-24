@@ -1,6 +1,6 @@
 from model_bakery import baker
 
-from kral_kutu_backend.api_test_case import faker
+from common.api_test_case import faker
 from order.models import Product
 
 
