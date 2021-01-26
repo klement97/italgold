@@ -1,0 +1,3 @@
+{
+  "ignore_dirs": ["KRAL_KUTU", "mediafiles", "staticfiles", "csv_files", "venv", ".github"]
+}
