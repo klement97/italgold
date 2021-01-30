@@ -21,7 +21,7 @@ sentry_sdk.init(
     )
 
 CORS_ALLOW_HEADERS = list(default_headers) + ['sentry-trace']
-ALLOWED_HOSTS = ['italgold.herokuapp.com', 'italgold.vercel.app']
+ALLOWED_HOSTS = ['italgold.herokuapp.com', 'italgold.vercel.app', 'italgold-api.herokuapp.com']
 
 DEFAULT_FILE_STORAGE = os.getenv('DEFAULT_FILE_STORAGE')
 AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
