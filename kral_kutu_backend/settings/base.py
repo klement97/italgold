@@ -1,8 +1,6 @@
 import os
 
-package_path = os.path.dirname(os.path.dirname(os.path.abspath(__package__)))
-root_path = 'kral_kutu_backend'
-BASE_DIR = os.path.join(package_path, root_path)
+from kral_kutu_backend.base_dir import BASE_DIR
 
 INSTALLED_APPS = [
     'django.contrib.admin',

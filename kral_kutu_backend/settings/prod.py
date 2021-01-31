@@ -51,8 +51,6 @@ LOGGING = {
         }
     }
 
-################################
-
 sentry_sdk.init(
     dsn=os.getenv('SENTRY_DSN'),
     integrations=[DjangoIntegration(), RedisIntegration()],
@@ -73,8 +71,9 @@ MIDDLEWARE = tuple(
     + list(MIDDLEWARE)
     )
 # Enable GZip.
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3StaticStorage'
 DEFAULT_FILE_STORAGE = os.getenv('DEFAULT_FILE_STORAGE')
 AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
