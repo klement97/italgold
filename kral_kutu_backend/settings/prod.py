@@ -8,7 +8,7 @@ from sentry_sdk.integrations.redis import RedisIntegration
 
 from .base import *
 
-DEBUG = os.getenv('DEBUG')
+DEBUG = bool(int(os.getenv('DEBUG')))
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 DATABASES = {
