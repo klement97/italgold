@@ -4,11 +4,11 @@ from django.contrib.postgres.fields import ArrayField
 from django.core.validators import MinValueValidator
 from django.db import models
 
-from common.models import LogicalDeleteModel, TrackedModel
+from common.models import LogicalDelete, Track
 from common.utils import send_order_invoice_email
 
 
-class LeatherSerial(LogicalDeleteModel):
+class LeatherSerial(LogicalDelete):
     name = models.CharField(max_length=50, verbose_name='Name')
 
     class Meta:
@@ -20,14 +20,15 @@ class LeatherSerial(LogicalDeleteModel):
         return self.name
 
 
-class Leather(LogicalDeleteModel):
+class Leather(LogicalDelete):
     code = models.CharField(verbose_name='Code', max_length=30)
-    image = models.ImageField(verbose_name='Image', blank=True, upload_to='leathers')
+    image = models.ImageField(verbose_name='Image', blank=True,
+                              upload_to='leathers')
     serial = models.ForeignKey(
-            to=LeatherSerial,
-            on_delete=models.DO_NOTHING,
-            related_name='leathers'
-            )
+        to=LeatherSerial,
+        on_delete=models.DO_NOTHING,
+        related_name='leathers'
+        )
 
     class Meta:
         ordering = ["code"]
@@ -39,7 +40,7 @@ class Leather(LogicalDeleteModel):
         return self.code
 
 
-class ProductCategory(LogicalDeleteModel):
+class ProductCategory(LogicalDelete):
     name = models.CharField(max_length=50, verbose_name='Name')
 
     class Meta:
@@ -52,7 +53,8 @@ class ProductCategory(LogicalDeleteModel):
 
 
 class ProductQuerySet(models.QuerySet):
-    def filter(self, *args, **kwargs) -> Union['ProductQuerySet', models.QuerySet['Product']]:
+    def filter(self, *args, **kwargs) -> Union[
+        'ProductQuerySet', models.QuerySet['Product']]:
         return super().filter(*args, **kwargs)
 
     def get_id_price_mapping(self) -> dict[int, float]:
@@ -62,12 +64,14 @@ class ProductQuerySet(models.QuerySet):
         return {p.properties['code']: p for p in self}
 
 
-class Product(LogicalDeleteModel):
+class Product(LogicalDelete):
     image = models.ImageField(verbose_name='Image', upload_to='products')
-    price = models.DecimalField(verbose_name='Price', decimal_places=3, max_digits=10,
+    price = models.DecimalField(verbose_name='Price', decimal_places=3,
+                                max_digits=10,
                                 validators=[MinValueValidator(0)])
-    properties = models.JSONField('Properties', help_text='Stores all of the product specific '
-                                                          'properties.')
+    properties = models.JSONField('Properties',
+                                  help_text='Stores all of the product specific '
+                                            'properties.')
     category = models.ForeignKey(to=ProductCategory,
                                  on_delete=models.DO_NOTHING,
                                  related_name='products',
@@ -86,7 +90,7 @@ class Product(LogicalDeleteModel):
         return products.get_id_price_mapping()
 
 
-class Order(LogicalDeleteModel, TrackedModel):
+class Order(LogicalDelete, Track):
     first_name = models.CharField(verbose_name='First name', max_length=50)
     last_name = models.CharField(verbose_name='Last name', max_length=50)
     phone = models.CharField(verbose_name='Phone', max_length=20)
@@ -113,6 +117,6 @@ class Order(LogicalDeleteModel, TrackedModel):
     def __str__(self):
         return '%s - %s' % (self.first_name, self.last_name)
 
-    def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
-        super().save(force_insert, force_update, using, update_fields)
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
         send_order_invoice_email(self)

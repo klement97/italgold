@@ -6,11 +6,11 @@ from order.models import Product
 
 def create_product():
     return Product.objects.create(
-            image=faker.file_name(),
-            price=faker.pydecimal(left_digits=7, right_digits=3),
-            category=baker.make('ProductCategory'),
-            properties={"code": "P-001"}
-            )
+        image=faker.file_name(),
+        price=faker.pydecimal(left_digits=7, right_digits=3),
+        category=baker.make('ProductCategory'),
+        properties={"code": "P-001"}
+        )
 
 
 def get_valid_products_dict():
@@ -57,3 +57,7 @@ def get_invalid_order_create_dict():
         'outer_leather': leather.id + 2,
         'products': get_invalid_order_units_dict()
         }
+
+
+def fake_send(*args, **kwargs):
+    pass

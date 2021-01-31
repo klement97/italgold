@@ -3,13 +3,13 @@ from django.urls import reverse
 from model_bakery import baker
 from rest_framework import status
 
-from common.api_test_case import KKAPITestCase, faker
+from common.api_test_case import APITestCase, faker
 from order.json_schemas import product_category_schema, product_schema
 from order.models import Product
 from order.tests.utils import create_product
 
 
-class TestProductRetrieve(KKAPITestCase):
+class TestProductRetrieve(APITestCase):
 
     @classmethod
     def setUpTestData(cls):
@@ -19,9 +19,9 @@ class TestProductRetrieve(KKAPITestCase):
 
     def setUp(self) -> None:
         self.url = self.get_url_with_pk(
-                view_name='product',
-                pk=self.products[faker.random.randint(0, 4)].pk
-                )
+            view_name='product',
+            pk=self.products[faker.random.randint(0, 4)].pk
+            )
         self.v = Validator(product_schema)
 
     def test_retrieve(self):
@@ -37,9 +37,9 @@ class TestProductRetrieve(KKAPITestCase):
         """
         last_pk = Product.objects.only('id').order_by('id').last().id
         self.url = self.get_url_with_pk(
-                view_name='product',
-                pk=last_pk + 1
-                )
+            view_name='product',
+            pk=last_pk + 1
+            )
         response = self.get()
 
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
@@ -60,14 +60,16 @@ class TestProductRetrieve(KKAPITestCase):
         self.assertNumQueries(1, func=self.get)
 
 
-class TestProductList(KKAPITestCase):
+class TestProductList(APITestCase):
     url = reverse('product')
 
     @classmethod
     def setUpTestData(cls):
-        cls.products = baker.make('Product', _quantity=25, image=faker.file_name(),
+        cls.products = baker.make('Product', _quantity=25,
+                                  image=faker.file_name(),
                                   properties={"code": "P-001"}, deleted=False)
-        baker.make('Product', _quantity=15, image=faker.file_name(), properties={"code": "P-001"},
+        baker.make('Product', _quantity=15, image=faker.file_name(),
+                   properties={"code": "P-001"},
                    deleted=True)
 
     def setUp(self) -> None:
@@ -104,7 +106,7 @@ class TestProductList(KKAPITestCase):
         self.assertNumQueries(1, self.get)
 
 
-class TestProductCategoryList(KKAPITestCase):
+class TestProductCategoryList(APITestCase):
     url = reverse('product-category')
 
     @classmethod

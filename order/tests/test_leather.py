@@ -2,11 +2,11 @@ from cerberus import Validator
 from django.urls import reverse
 from model_bakery import baker
 
-from common.api_test_case import KKAPITestCase, faker
+from common.api_test_case import APITestCase, faker
 from order.json_schemas import leather_schema, leather_serial_schema
 
 
-class TestLeatherList(KKAPITestCase):
+class TestLeatherList(APITestCase):
     url = reverse('leather')
 
     @classmethod
@@ -37,7 +37,7 @@ class TestLeatherList(KKAPITestCase):
         self.assertNumQueries(1, self.get)
 
 
-class TestLeatherSerialList(KKAPITestCase):
+class TestLeatherSerialList(APITestCase):
     url = reverse('leather-serial')
 
     @classmethod

@@ -1,5 +1,9 @@
 from .base import *
 
+DEBUG = True
+
+SECRET_KEY = 'development'
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',

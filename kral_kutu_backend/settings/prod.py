@@ -8,6 +8,9 @@ from sentry_sdk.integrations.redis import RedisIntegration
 
 from .base import *
 
+DEBUG = os.getenv('DEBUG')
+SECRET_KEY = os.getenv('SECRET_KEY')
+
 django_heroku.settings(config=locals())
 
 sentry_sdk.init(
@@ -21,7 +24,8 @@ sentry_sdk.init(
     )
 
 CORS_ALLOW_HEADERS = list(default_headers) + ['sentry-trace']
-ALLOWED_HOSTS = ['italgold.herokuapp.com', 'italgold.vercel.app', 'italgold-api.herokuapp.com']
+ALLOWED_HOSTS = ['italgold.herokuapp.com', 'italgold.vercel.app',
+                 'italgold-api.herokuapp.com']
 
 DEFAULT_FILE_STORAGE = os.getenv('DEFAULT_FILE_STORAGE')
 AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
@@ -44,4 +48,9 @@ CACHES = {
         }
     }
 
-DEFAULT_FROM_EMAIL = 'italgold.dev@gmail.com'
+DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL')
+ADMINS = [
+    ('Klement Omeri', 'klementomeri97@gmail.com'),
+    ('Klement Omeri', 'italgold.dev@gmail.com'),
+    ('Klement Omeri', 'klement-omeri97@hotmail.com'),
+    ]

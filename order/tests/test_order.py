@@ -1,21 +1,19 @@
+from unittest.mock import MagicMock, patch
+
 from django.urls import reverse
 from rest_framework import status
+from sendgrid import SendGridAPIClient
 
-from common.api_test_case import KKAPITestCase
+from common.api_test_case import APITestCase
 from order.models import Order
-from order.tests.utils import get_invalid_order_create_dict, get_valid_order_create_dict
+from order.tests.utils import get_invalid_order_create_dict, \
+    get_valid_order_create_dict
 
 
-class TestOrderCreate(KKAPITestCase):
+class TestOrderCreate(APITestCase):
     url = reverse('order')
 
-    @classmethod
-    def setUpTestData(cls):
-        pass
-
-    def setUp(self) -> None:
-        pass
-
+    @patch('order.models.send_order_invoice_email', lambda _: None)
     def test_valid_create(self):
         data = get_valid_order_create_dict()
         self.creation_assertions(posted_data=data)
@@ -33,6 +31,7 @@ class TestOrderCreate(KKAPITestCase):
         for field in ['first_name', 'last_name', 'phone', 'address']:
             self.assertIn(field, response.data)
 
+    @patch('order.models.send_order_invoice_email', lambda _: None)
     def test_is_order_created_in_db(self):
         request_data = get_valid_order_create_dict()
         response = self.post(data=request_data, format='json')
@@ -42,7 +41,22 @@ class TestOrderCreate(KKAPITestCase):
         for field in ['first_name', 'last_name', 'phone', 'address']:
             self.assertEqual(getattr(order, field), request_data[field])
 
+    @patch('order.models.send_order_invoice_email', lambda _: None)
     def test_num_of_queries(self):
         data = get_valid_order_create_dict()
-        query_count = 4  # 3 select (1 inner leather, 1 outer leather, 1 product) and 1 insert
-        self.assertNumQueries(query_count, func=self.post, data=data, format='json')
+
+        # 1 insert and 3 select (1 inner leather, 1 outer leather, 1 product)
+        # queries are performed by the write serializer itself
+        query_count = 4
+
+        self.assertNumQueries(
+            query_count,
+            func=self.post,
+            data=data,
+            format='json'
+            )
+
+    @patch.object(SendGridAPIClient, 'send')
+    def test_email_is_sent_to_manager(self, send: MagicMock):
+        self.post(data=get_valid_order_create_dict(), format='json')
+        send.assert_called_once()

@@ -7,7 +7,8 @@ leather_schema = {
 leather_serial_schema = {
     'id': {'type': 'number', 'required': True, 'empty': False},
     'name': {'type': 'string', 'required': True, 'empty': False},
-    'leathers': {'type': 'list', 'required': True, 'empty': True, 'schema': leather_schema},
+    'leathers': {'type': 'list', 'required': True, 'empty': True,
+                 'schema': leather_schema},
     }
 
 product_category_schema = {
@@ -16,10 +17,14 @@ product_category_schema = {
     }
 
 product_properties_schema = {
-    'code': {'type': 'string', 'required': False, 'empty': True, 'nullable': True},
-    'height': {'type': 'string', 'required': False, 'empty': True, 'nullable': True},
-    'width': {'type': 'string', 'required': False, 'empty': True, 'nullable': True},
-    'length': {'type': 'string', 'required': False, 'empty': True, 'nullable': True},
+    'code': {'type': 'string', 'required': False, 'empty': True,
+             'nullable': True},
+    'height': {'type': 'string', 'required': False, 'empty': True,
+               'nullable': True},
+    'width': {'type': 'string', 'required': False, 'empty': True,
+              'nullable': True},
+    'length': {'type': 'string', 'required': False, 'empty': True,
+               'nullable': True},
     }
 
 product_schema = {

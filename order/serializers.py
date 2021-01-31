@@ -43,10 +43,12 @@ class OrderWriteSerializer(ModelSerializer):
 
     def create(self, validated_data):
         products = validated_data.pop('products')
-        product_id_price = Product.get_id_price_mapping(ids={unit['product'] for unit in products})
+        product_id_price = Product.get_id_price_mapping(
+            ids={unit['product'] for unit in products})
 
         for index, unit in enumerate(products):
-            products[index]['price'] = float(product_id_price.get(unit['product']))
+            products[index]['price'] = float(
+                product_id_price.get(unit['product']))
         validated_data['products'] = products
 
         return super().create(validated_data)

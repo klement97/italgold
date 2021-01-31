@@ -5,7 +5,8 @@ from order.models import Leather, LeatherSerial, Order, Product, ProductCategory
 
 @admin.register(Order)
 class PostAdmin(admin.ModelAdmin):
-    list_display = ('upper_case_name', 'phone', 'address', 'date_last_updated', 'deleted')
+    list_display = (
+    'upper_case_name', 'phone', 'address', 'date_last_updated', 'deleted')
     list_display_links = ('upper_case_name',)
     list_editable = ('deleted',)
     list_filter = ('deleted',)

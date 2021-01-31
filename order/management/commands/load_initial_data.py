@@ -14,10 +14,10 @@ class Command(BaseCommand):
 
         # Named (optional) arguments
         parser.add_argument(
-                '--migrate',
-                action='store_true',
-                help="Create the required migration if it doesn't exists",
-                )
+            '--migrate',
+            action='store_true',
+            help="Create the required migration if it doesn't exists",
+            )
 
     @staticmethod
     def make_migrations(path):
@@ -38,7 +38,9 @@ class Command(BaseCommand):
 
         fixtures = os.listdir(f'{path_to_app}/fixtures')
         if fixtures:
-            fixtures = [f'{path_to_app}/fixtures/{fixture}' for fixture in fixtures]
+            fixtures = [f'{path_to_app}/fixtures/{fixture}' for fixture in
+                        fixtures]
             management.call_command('loaddata', *fixtures)
         else:
-            self.stdout.write(self.style.ERROR(f'No fixtures detected under {app}/fixtures/'))
+            self.stdout.write(
+                self.style.ERROR(f'No fixtures detected under {app}/fixtures/'))

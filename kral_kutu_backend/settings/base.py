@@ -1,10 +1,8 @@
 import os
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
-DEBUG = True
-
-SECRET_KEY = os.getenv('SECRET_KEY', 'development')
+package_path = os.path.dirname(os.path.dirname(os.path.abspath(__package__)))
+root_path = 'kral_kutu_backend'
+BASE_DIR = os.path.join(package_path, root_path)
 
 INSTALLED_APPS = [
     'django.contrib.admin',

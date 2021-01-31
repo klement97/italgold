@@ -5,10 +5,10 @@
 {% load i18n_switcher %}
 
 {% block extrahead %}
-    <link rel="shortcut icon" href="{% static 'images/favicon.png' %}" />
+    <link rel="shortcut icon" href="{% static 'images/favicon.png' %}"/>
     <link rel="stylesheet" type="text/css" href="{% static 'css/custom_admin.css' %}"/>
 {% endblock %}
- 
+
 {% block userlinks %}
     <a href="{{ request|switch_i18n:'en' }}">
         <img class="i18n_flag" src="{% static 'images/uk.png' %}" alt="eng"/>

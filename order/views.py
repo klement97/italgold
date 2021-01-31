@@ -5,7 +5,8 @@ from rest_framework.generics import CreateAPIView, ListAPIView, RetrieveAPIView
 from order.filters import ProductFilter
 from order.models import Leather, LeatherSerial, Order
 from order.models import Product, ProductCategory
-from order.serializers import LeatherSerialSerializer, LeatherSerializer, OrderReadSerializer
+from order.serializers import LeatherSerialSerializer, LeatherSerializer, \
+    OrderReadSerializer
 from order.serializers import OrderWriteSerializer
 from order.serializers import ProductCategorySerializer, ProductSerializer
 
@@ -63,7 +64,8 @@ class LeatherListAPIView(ListAPIView):
 
 class LeatherSerialListAPIView(ListAPIView):
     serializer_class = LeatherSerialSerializer
-    queryset = LeatherSerial.objects.prefetch_related('leathers').filter(deleted=False)
+    queryset = LeatherSerial.objects.prefetch_related('leathers').filter(
+        deleted=False)
 
     @method_decorator(cache_page(None))
     def get(self, request, *args, **kwargs):

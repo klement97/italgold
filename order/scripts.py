@@ -19,7 +19,8 @@ def get_product_from_dict(product_dict: dict) -> Product:
 
 def load_products_csv():
     with open('./csv_files/products.csv') as f:
-        field_names = ['code', 'codes', 'width', 'length', 'height', 'price', 'prices', 'category',
+        field_names = ['code', 'codes', 'width', 'length', 'height', 'price',
+                       'prices', 'category',
                        'image']
         file = csv.DictReader(f, fieldnames=field_names)
 

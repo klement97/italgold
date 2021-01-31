@@ -4,12 +4,12 @@ from django.conf import settings
 from django.urls import reverse
 from faker import Faker
 from rest_framework import status
-from rest_framework.test import APITestCase
+from rest_framework.test import APITestCase as RestAPITestCase
 
 faker = Faker()
 
 
-class KKAPITestCase(APITestCase):
+class APITestCase(RestAPITestCase):
     """
     Custom API Test Case Class to use inside API View Tests.
     Provides methods for all operations that handles common assertions.
@@ -20,7 +20,7 @@ class KKAPITestCase(APITestCase):
     url = None
 
     def __init__(self, *args, **kwargs):
-        super(APITestCase, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
 
         try:
             getattr(self, 'url')
@@ -48,9 +48,9 @@ class KKAPITestCase(APITestCase):
 
     def creation_assertions(self, posted_data, should_be_in_response=None):
         self.response = self.post(
-                data=json.dumps(posted_data),
-                content_type='application/json'
-                )
+            data=json.dumps(posted_data),
+            content_type='application/json'
+            )
 
         self.assertEqual(self.response.status_code, status.HTTP_201_CREATED)
         data = self.response.data
@@ -94,13 +94,14 @@ class KKAPITestCase(APITestCase):
         self.assertNotIsInstance(data, list)
         self.assertEqual(data['id'], pk)
 
-    def update_assertions(self, url, update_data, instance, should_be_updated=None):
+    def update_assertions(self, url, update_data, instance,
+                          should_be_updated=None):
         update_data['id'] = instance.pk
         response = self.client.put(
-                path=url,
-                data=json.dumps(update_data),
-                content_type='application/json'
-                )
+            path=url,
+            data=json.dumps(update_data),
+            content_type='application/json'
+            )
         instance.refresh_from_db()
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
