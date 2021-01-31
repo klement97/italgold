@@ -1,6 +1,6 @@
 import os
 
-from kral_kutu_backend.base_dir import BASE_DIR
+from italgold.base_dir import BASE_DIR
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -38,7 +38,7 @@ MIDDLEWARE = [
 
 CORS_ORIGIN_ALLOW_ALL = True
 
-ROOT_URLCONF = 'kral_kutu_backend.urls'
+ROOT_URLCONF = 'italgold.urls'
 
 TEMPLATES = [
     {
@@ -60,7 +60,7 @@ TEMPLATES = [
         },
     ]
 
-WSGI_APPLICATION = 'kral_kutu_backend.wsgi.application'
+WSGI_APPLICATION = 'italgold.wsgi.application'
 
 AUTH_PASSWORD_VALIDATORS = [
     {

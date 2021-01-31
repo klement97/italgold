@@ -65,13 +65,7 @@ CORS_ALLOW_HEADERS = list(default_headers) + ['sentry-trace']
 ALLOWED_HOSTS = ['italgold.herokuapp.com', 'italgold.vercel.app',
                  'italgold-api.herokuapp.com']
 
-# Add whitenoise for static files
-MIDDLEWARE = tuple(
-    ['whitenoise.middleware.WhiteNoiseMiddleware']
-    + list(MIDDLEWARE)
-    )
-
-STATICFILES_STORAGE = 'storages.backends.s3boto3.S3StaticStorage'
+STATICFILES_STORAGE = os.getenv('STATICFILES_STORAGE')
 DEFAULT_FILE_STORAGE = os.getenv('DEFAULT_FILE_STORAGE')
 AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')

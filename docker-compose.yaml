@@ -12,7 +12,7 @@ services:
       POSTGRES_DB: italgold
     networks:
       internal_net:
-        ipv4_address: 172.28.1.7
+        ipv4_address: 172.30.1.7
 
 volumes:
   postgres_data:
@@ -22,4 +22,4 @@ networks:
     ipam:
       driver: default
       config:
-        - subnet: 172.28.0.0/16
+        - subnet: 172.30.0.0/16
