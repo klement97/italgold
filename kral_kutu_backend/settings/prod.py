@@ -1,5 +1,6 @@
 from urllib.parse import urlparse
 
+import dj_database_url
 import django_heroku
 import sentry_sdk
 from corsheaders.defaults import default_headers
@@ -11,7 +12,47 @@ from .base import *
 DEBUG = os.getenv('DEBUG')
 SECRET_KEY = os.getenv('SECRET_KEY')
 
-django_heroku.settings(config=locals())
+DATABASES = {
+    'default': dj_database_url.config(
+        conn_max_age=django_heroku.MAX_CONN_AGE,
+        ssl_require=True
+        )
+    }
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': ('%(asctime)s [%(process)d] [%(levelname)s] ' +
+                       'pathname=%(pathname)s lineno=%(lineno)s ' +
+                       'funcname=%(funcName)s %(message)s'),
+            'datefmt': '%Y-%m-%d %H:%M:%S'
+            },
+        'simple': {
+            'format': '%(levelname)s %(message)s'
+            }
+        },
+    'handlers': {
+        'null': {
+            'level': 'DEBUG',
+            'class': 'logging.NullHandler',
+            },
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'verbose'
+            }
+        },
+    'loggers': {
+        'testlogger': {
+            'handlers': ['console'],
+            'level': 'INFO',
+            }
+        }
+    }
+
+################################
 
 sentry_sdk.init(
     dsn=os.getenv('SENTRY_DSN'),
@@ -26,6 +67,14 @@ sentry_sdk.init(
 CORS_ALLOW_HEADERS = list(default_headers) + ['sentry-trace']
 ALLOWED_HOSTS = ['italgold.herokuapp.com', 'italgold.vercel.app',
                  'italgold-api.herokuapp.com']
+
+# Add whitenoise for static files
+MIDDLEWARE = tuple(
+    ['whitenoise.middleware.WhiteNoiseMiddleware']
+    + list(MIDDLEWARE)
+    )
+# Enable GZip.
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 DEFAULT_FILE_STORAGE = os.getenv('DEFAULT_FILE_STORAGE')
 AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
