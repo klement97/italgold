@@ -111,3 +111,6 @@ LANGUAGES = [
 
 FRONTEND_URL = 'https://italgold.herokuapp.com'
 FRONTEND_INVOICE_URL = f'{FRONTEND_URL}/order/post-checkout'
+
+STATIC_URL = '/staticfiles/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles/')
