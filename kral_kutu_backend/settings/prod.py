@@ -1,7 +1,6 @@
 from urllib.parse import urlparse
 
 import dj_database_url
-import django_heroku
 import sentry_sdk
 from corsheaders.defaults import default_headers
 from sentry_sdk.integrations.django import DjangoIntegration
@@ -14,7 +13,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 
 DATABASES = {
     'default': dj_database_url.config(
-        conn_max_age=django_heroku.MAX_CONN_AGE,
+        conn_max_age=600,
         ssl_require=True
         )
     }
