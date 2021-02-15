@@ -149,7 +149,6 @@ staticfiles
 db.json
 db.dump
 KRAL_KUTU
-*migrations*
 .env
 *.env
 *env
