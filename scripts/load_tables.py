@@ -29,7 +29,7 @@ def create_tables():
 
 
 def create_service_tables():
-    folder_dir = os.path.join(BASE_DIR, 'KRAL_KUTU/SERVIS_TABLALARI')
+    folder_dir = os.path.join(settings.BASE_DIR, 'KRAL_KUTU/SERVIS_TABLALARI')
     image_paths = os.listdir(folder_dir)
     category = ProductCategory.objects.get(name__icontains='Tabaka Sh')
 
@@ -52,7 +52,7 @@ def create_service_tables():
 
 
 def create_premium_tables():
-    folder_dir = os.path.join(BASE_DIR, 'KRAL_KUTU/Premium_tablalar')
+    folder_dir = os.path.join(settings.BASE_DIR, 'KRAL_KUTU/Premium_tablalar')
     image_paths = os.listdir(folder_dir)
     category = ProductCategory.objects.get(name__icontains='Premium')
 

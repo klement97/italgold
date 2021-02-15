@@ -67,7 +67,7 @@ class ProductQuerySet(models.QuerySet):
 class Product(LogicalDelete):
     image = models.ImageField(verbose_name='Image', upload_to='products')
     price = models.DecimalField(verbose_name='Price', decimal_places=3,
-                                max_digits=10,
+                                max_digits=10, null=True,
                                 validators=[MinValueValidator(0)])
     properties = models.JSONField('Properties',
                                   help_text='Stores all of the product specific '
