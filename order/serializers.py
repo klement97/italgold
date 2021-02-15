@@ -41,18 +41,6 @@ class OrderWriteSerializer(ModelSerializer):
             'inner_leather', 'outer_leather'
             ]
 
-    def create(self, validated_data):
-        products = validated_data.pop('products')
-        product_id_price = Product.get_id_price_mapping(
-            ids={unit['product'] for unit in products})
-
-        for index, unit in enumerate(products):
-            products[index]['price'] = float(
-                product_id_price.get(unit['product']))
-        validated_data['products'] = products
-
-        return super().create(validated_data)
-
 
 class ProductCategorySerializer(ModelSerializer):
     class Meta:

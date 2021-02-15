@@ -65,12 +65,22 @@ class TestProductList(APITestCase):
 
     @classmethod
     def setUpTestData(cls):
-        cls.products = baker.make('Product', _quantity=25,
-                                  image=faker.file_name(),
-                                  properties={"code": "P-001"}, deleted=False)
-        baker.make('Product', _quantity=15, image=faker.file_name(),
-                   properties={"code": "P-001"},
-                   deleted=True)
+        cls.products = baker.make(
+            'Product',
+            _quantity=25,
+            image=faker.file_name(),
+            price=10,
+            properties={"code": "P-001"},
+            deleted=False
+            )
+        baker.make(
+            'Product',
+            _quantity=15,
+            image=faker.file_name(),
+            properties={"code": "P-001"},
+            price=10,
+            deleted=True
+            )
 
     def setUp(self) -> None:
         self.v = Validator(product_schema)
