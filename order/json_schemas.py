@@ -19,6 +19,10 @@ product_category_schema = {
 product_properties_schema = {
     'code': {'type': 'string', 'required': False, 'empty': True,
              'nullable': True},
+    'codes': {'type': 'string', 'required': False, 'empty': True,
+              'nullable': True},
+    'prices': {'type': 'string', 'required': False, 'empty': True,
+               'nullable': True},
     'height': {'type': 'string', 'required': False, 'empty': True,
                'nullable': True},
     'width': {'type': 'string', 'required': False, 'empty': True,
