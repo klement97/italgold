@@ -4,7 +4,7 @@
     "pk": 63,
     "fields": {
       "deleted": false,
-      "image": "products/5.JPG",
+      "image": "products/ST-5.jpg",
       "price": "25.000",
       "properties": {
         "code": "5",
@@ -20,7 +20,7 @@
     "pk": 64,
     "fields": {
       "deleted": false,
-      "image": "products/10-a.jpg",
+      "image": "products/ST-10-a.jpg",
       "price": "25.000",
       "properties": {
         "code": "10-a",
@@ -36,7 +36,7 @@
     "pk": 65,
     "fields": {
       "deleted": false,
-      "image": "products/11.jpg",
+      "image": "products/ST-11.jpg",
       "price": "25.000",
       "properties": {
         "code": "11",
@@ -52,7 +52,7 @@
     "pk": 66,
     "fields": {
       "deleted": false,
-      "image": "products/2.JPG",
+      "image": "products/ST-2.jpg",
       "price": "25.000",
       "properties": {
         "code": "2",
@@ -68,7 +68,7 @@
     "pk": 67,
     "fields": {
       "deleted": false,
-      "image": "products/14-a.jpg",
+      "image": "products/ST-14-a.jpg",
       "price": "25.000",
       "properties": {
         "code": "14-a",
@@ -84,7 +84,7 @@
     "pk": 68,
     "fields": {
       "deleted": false,
-      "image": "products/14.jpg",
+      "image": "products/ST-14.jpg",
       "price": "25.000",
       "properties": {
         "code": "14",
@@ -100,7 +100,7 @@
     "pk": 69,
     "fields": {
       "deleted": false,
-      "image": "products/13-a.jpg",
+      "image": "products/ST-13-a.jpg",
       "price": "25.000",
       "properties": {
         "code": "13-a",
@@ -116,7 +116,7 @@
     "pk": 70,
     "fields": {
       "deleted": false,
-      "image": "products/8.JPG",
+      "image": "products/ST-8.jpg",
       "price": "25.000",
       "properties": {
         "code": "8",
@@ -132,7 +132,7 @@
     "pk": 71,
     "fields": {
       "deleted": false,
-      "image": "products/9-b.jpg",
+      "image": "products/ST-9-b.jpg",
       "price": "25.000",
       "properties": {
         "code": "9-b",
@@ -148,7 +148,7 @@
     "pk": 72,
     "fields": {
       "deleted": false,
-      "image": "products/6.JPG",
+      "image": "products/ST-6.jpg",
       "price": "25.000",
       "properties": {
         "code": "6",
@@ -164,7 +164,7 @@
     "pk": 73,
     "fields": {
       "deleted": false,
-      "image": "products/3.JPG",
+      "image": "products/ST-3.jpg",
       "price": "25.000",
       "properties": {
         "code": "3",
@@ -180,7 +180,7 @@
     "pk": 74,
     "fields": {
       "deleted": false,
-      "image": "products/7.JPG",
+      "image": "products/ST-7.jpg",
       "price": "25.000",
       "properties": {
         "code": "7",
@@ -196,7 +196,7 @@
     "pk": 75,
     "fields": {
       "deleted": false,
-      "image": "products/10.jpg",
+      "image": "products/ST-10.jpg",
       "price": "25.000",
       "properties": {
         "code": "10",
@@ -212,7 +212,7 @@
     "pk": 76,
     "fields": {
       "deleted": false,
-      "image": "products/9-a.jpg",
+      "image": "products/ST-9-a.jpg",
       "price": "25.000",
       "properties": {
         "code": "9-a",
@@ -228,7 +228,7 @@
     "pk": 77,
     "fields": {
       "deleted": false,
-      "image": "products/1.JPG",
+      "image": "products/ST-1.jpg",
       "price": "25.000",
       "properties": {
         "code": "1",
@@ -244,7 +244,7 @@
     "pk": 78,
     "fields": {
       "deleted": false,
-      "image": "products/3-b.JPG",
+      "image": "products/ST-3-b.jpg",
       "price": "25.000",
       "properties": {
         "code": "3-b",
@@ -260,7 +260,7 @@
     "pk": 79,
     "fields": {
       "deleted": false,
-      "image": "products/7-a.JPG",
+      "image": "products/ST-7-a.jpg",
       "price": "25.000",
       "properties": {
         "code": "7-a",
@@ -276,7 +276,7 @@
     "pk": 80,
     "fields": {
       "deleted": false,
-      "image": "products/12.jpg",
+      "image": "products/ST-12.jpg",
       "price": "25.000",
       "properties": {
         "code": "12",
@@ -292,7 +292,7 @@
     "pk": 81,
     "fields": {
       "deleted": false,
-      "image": "products/6-b.JPG",
+      "image": "products/ST-6-b.jpg",
       "price": "25.000",
       "properties": {
         "code": "6-b",
@@ -308,7 +308,7 @@
     "pk": 82,
     "fields": {
       "deleted": false,
-      "image": "products/13.jpg",
+      "image": "products/ST-13.jpg",
       "price": "25.000",
       "properties": {
         "code": "13",
@@ -324,7 +324,7 @@
     "pk": 83,
     "fields": {
       "deleted": false,
-      "image": "products/4.JPG",
+      "image": "products/ST-4.jpg",
       "price": "25.000",
       "properties": {
         "code": "4",
@@ -340,7 +340,7 @@
     "pk": 84,
     "fields": {
       "deleted": false,
-      "image": "products/6-a.JPG",
+      "image": "products/ST-6-a.jpg",
       "price": "25.000",
       "properties": {
         "code": "6-a",
@@ -356,7 +356,7 @@
     "pk": 85,
     "fields": {
       "deleted": false,
-      "image": "products/9.jpg",
+      "image": "products/ST-9.jpg",
       "price": "25.000",
       "properties": {
         "code": "9",
@@ -372,7 +372,7 @@
     "pk": 86,
     "fields": {
       "deleted": false,
-      "image": "products/3-a.JPG",
+      "image": "products/ST-3-a.jpg",
       "price": "25.000",
       "properties": {
         "code": "3-a",
@@ -388,7 +388,7 @@
     "pk": 87,
     "fields": {
       "deleted": false,
-      "image": "products/P1.JPG",
+      "image": "products/PT-1.JPG",
       "price": "22.000",
       "properties": {
         "code": "P1",
@@ -404,7 +404,7 @@
     "pk": 88,
     "fields": {
       "deleted": false,
-      "image": "products/P10.JPG",
+      "image": "products/PT-10.JPG",
       "price": "28.000",
       "properties": {
         "code": "P10",
@@ -420,7 +420,7 @@
     "pk": 89,
     "fields": {
       "deleted": false,
-      "image": "products/P3.JPG",
+      "image": "products/PT-3.JPG",
       "price": "35.000",
       "properties": {
         "code": "P3",
@@ -436,7 +436,7 @@
     "pk": 90,
     "fields": {
       "deleted": false,
-      "image": "products/P5.JPG",
+      "image": "products/PT-5.JPG",
       "price": "40.000",
       "properties": {
         "code": "P5",
@@ -452,7 +452,7 @@
     "pk": 91,
     "fields": {
       "deleted": false,
-      "image": "products/P2.JPG",
+      "image": "products/PT-2.JPG",
       "price": "35.000",
       "properties": {
         "code": "P2",
@@ -468,7 +468,7 @@
     "pk": 92,
     "fields": {
       "deleted": false,
-      "image": "products/P9.JPG",
+      "image": "products/PT-9.JPG",
       "price": "35.000",
       "properties": {
         "code": "P9",
@@ -484,7 +484,7 @@
     "pk": 93,
     "fields": {
       "deleted": false,
-      "image": "products/P6.JPG",
+      "image": "products/PT-6.JPG",
       "price": "40.000",
       "properties": {
         "code": "P6",
@@ -500,7 +500,7 @@
     "pk": 94,
     "fields": {
       "deleted": false,
-      "image": "products/P7.JPG",
+      "image": "products/PT-7.JPG",
       "price": "35.000",
       "properties": {
         "code": "P7",
@@ -516,7 +516,7 @@
     "pk": 95,
     "fields": {
       "deleted": false,
-      "image": "products/P4.JPG",
+      "image": "products/PT-4.JPG",
       "price": "32.000",
       "properties": {
         "code": "P4",
@@ -532,7 +532,7 @@
     "pk": 96,
     "fields": {
       "deleted": false,
-      "image": "products/P11.JPG",
+      "image": "products/PT-11.JPG",
       "price": "28.000",
       "properties": {
         "code": "P11",
@@ -548,7 +548,7 @@
     "pk": 97,
     "fields": {
       "deleted": false,
-      "image": "products/P8.JPG",
+      "image": "products/PT-8.JPG",
       "price": "35.000",
       "properties": {
         "code": "P8",
@@ -564,7 +564,7 @@
     "pk": 98,
     "fields": {
       "deleted": false,
-      "image": "products/P12.JPG",
+      "image": "products/PT-12.JPG",
       "price": "26.000",
       "properties": {
         "code": "P12",
