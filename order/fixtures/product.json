@@ -3009,22 +3009,6 @@
   },
   {
     "model": "order.product",
-    "pk": 300,
-    "fields": {
-      "deleted": false,
-      "image": "products/KU6684.MOV",
-      "price": null,
-      "properties": {
-        "code": "KU6684",
-        "width": null,
-        "height": null,
-        "length": null
-      },
-      "category": 2
-    }
-  },
-  {
-    "model": "order.product",
     "pk": 301,
     "fields": {
       "deleted": false,
@@ -3080,22 +3064,6 @@
       "price": null,
       "properties": {
         "code": "KU0345",
-        "width": null,
-        "height": null,
-        "length": null
-      },
-      "category": 2
-    }
-  },
-  {
-    "model": "order.product",
-    "pk": 305,
-    "fields": {
-      "deleted": false,
-      "image": "products/boxes.csv",
-      "price": null,
-      "properties": {
-        "code": "boxes",
         "width": null,
         "height": null,
         "length": null
@@ -3845,7 +3813,7 @@
     "model": "order.product",
     "pk": 346,
     "fields": {
-      "deleted": false,
+      "deleted": true,
       "image": "",
       "price": null,
       "properties": {
@@ -3945,7 +3913,7 @@
     "model": "order.product",
     "pk": 350,
     "fields": {
-      "deleted": false,
+      "deleted": true,
       "image": "",
       "price": null,
       "properties": {
@@ -4124,7 +4092,7 @@
     "model": "order.product",
     "pk": 357,
     "fields": {
-      "deleted": false,
+      "deleted": true,
       "image": "",
       "price": null,
       "properties": {
