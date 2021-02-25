@@ -41,7 +41,8 @@ class TestOrderCreate(APITestCase):
         for field in ['first_name', 'last_name', 'phone', 'address']:
             self.assertEqual(getattr(order, field), request_data[field])
 
-    @patch('order.models.send_order_invoice_email', lambda _: None)
+    @patch('order.models.send_order_invoice_email',
+           lambda *args, **kwargs: None)
     def test_num_of_queries(self):
         data = get_valid_order_create_dict()
 
