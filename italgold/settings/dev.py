@@ -4,6 +4,12 @@ DEBUG = True
 
 SECRET_KEY = 'development'
 
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
+        }
+    }
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
