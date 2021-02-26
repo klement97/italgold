@@ -45,10 +45,7 @@ class TestOrderCreate(APITestCase):
            lambda *args, **kwargs: None)
     def test_num_of_queries(self):
         data = get_valid_order_create_dict()
-
-        # 1 insert and 3 select (1 inner leather, 1 outer leather, 1 product)
-        # queries are performed by the write serializer itself
-        query_count = 4
+        query_count = 3
 
         self.assertNumQueries(
             query_count,
