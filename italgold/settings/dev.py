@@ -10,6 +10,11 @@ CACHES = {
         }
     }
 
+# LOGGING['loggers']['django.db.backends'] = {
+#     'handlers': ['console'],
+#     'level': 'DEBUG',
+#     }
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
