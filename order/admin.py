@@ -14,7 +14,8 @@ class PostAdmin(admin.ModelAdmin):
     date_hierarchy = 'date_created'
     ordering = ('date_created', 'date_last_updated')
 
-    def upper_case_name(self, obj):
+    @staticmethod
+    def upper_case_name(obj):
         return ("%s %s" % (obj.first_name, obj.last_name)).title()
 
     upper_case_name.short_description = 'Name'
