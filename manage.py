@@ -1,6 +1,10 @@
 #!/usr/bin/env python
 """Django's command-line utility for administrative tasks."""
+import os
 import sys
+
+
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'italgold.settings.dev')
 
 
 def main():
