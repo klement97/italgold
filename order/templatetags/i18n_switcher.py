@@ -25,9 +25,9 @@ def switch_lang_code(path, language):
     # Validate the inputs
     if path == '':
         raise Exception('URL path for language switch is empty')
-    elif path[0] != '/':
+    if path[0] != '/':
         raise Exception('URL path for language switch does not start with "/"')
-    elif language not in lang_codes:
+    if language not in lang_codes:
         raise Exception('%s is not a supported language code' % language)
 
     # Split the parts of the path
