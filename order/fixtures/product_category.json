@@ -17,22 +17,6 @@
   },
   {
     "model": "order.productcategory",
-    "pk": 3,
-    "fields": {
-      "deleted": false,
-      "name": "Premium Table"
-    }
-  },
-  {
-    "model": "order.productcategory",
-    "pk": 4,
-    "fields": {
-      "deleted": false,
-      "name": "Service Table"
-    }
-  },
-  {
-    "model": "order.productcategory",
     "pk": 5,
     "fields": {
       "deleted": false,

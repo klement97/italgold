@@ -11,9 +11,16 @@ leather_serial_schema = {
                  'schema': leather_schema},
     }
 
-product_category_schema = {
+product_sub_category_schema = {
     'id': {'type': 'number', 'required': True, 'empty': False},
     'name': {'type': 'string', 'required': True, 'empty': False}
+    }
+
+product_category_schema = {
+    'id': {'type': 'number', 'required': True, 'empty': False},
+    'name': {'type': 'string', 'required': True, 'empty': False},
+    'sub_categories': {'type': 'list', 'required': False, 'empty': True,
+                       'schema': product_sub_category_schema}
     }
 
 product_properties_schema = {

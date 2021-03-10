@@ -18,17 +18,17 @@ class TestProductRetrieve(APITestCase):
         cls.products = [create_product() for _ in range(5)]
 
     def setUp(self) -> None:
-        self.url = self.get_url_with_pk(
-            view_name='product',
-            pk=self.products[faker.random.randint(0, 4)].pk
-            )
+        self.url = self.get_with_pk(
+                view_name='product',
+                pk=self.products[faker.random.randint(0, 4)].pk
+                )
         self.v = Validator(product_schema)
 
     def test_retrieve(self):
         """
         Ensure that the basic retrieve assertions will pass.
         """
-        self.retrieve_assertions(self.url)
+        self.retrieve_asserts(self.url)
 
     def test_retrieve_non_existent_product(self):
         """
@@ -36,10 +36,10 @@ class TestProductRetrieve(APITestCase):
         trying to retrieve a non existent product.
         """
         last_pk = Product.objects.only('id').order_by('id').last().id
-        self.url = self.get_url_with_pk(
-            view_name='product',
-            pk=last_pk + 1
-            )
+        self.url = self.get_with_pk(
+                view_name='product',
+                pk=last_pk + 1
+                )
         response = self.get()
 
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
@@ -66,21 +66,21 @@ class TestProductList(APITestCase):
     @classmethod
     def setUpTestData(cls):
         cls.products = baker.make(
-            'Product',
-            _quantity=25,
-            image=faker.file_name(),
-            price=10,
-            properties={"code": "P-001"},
-            deleted=False
-            )
+                'Product',
+                _quantity=25,
+                image=faker.file_name(),
+                price=10,
+                properties={"code": "P-001"},
+                deleted=False
+                )
         baker.make(
-            'Product',
-            _quantity=15,
-            image=faker.file_name(),
-            properties={"code": "P-001"},
-            price=10,
-            deleted=True
-            )
+                'Product',
+                _quantity=15,
+                image=faker.file_name(),
+                properties={"code": "P-001"},
+                price=10,
+                deleted=True
+                )
 
     def setUp(self) -> None:
         self.v = Validator(product_schema)
@@ -89,14 +89,14 @@ class TestProductList(APITestCase):
         """
         Ensure that we can get a paginated response.
         """
-        self.list_assertions(paginated=True)
+        self.list_asserts(paginated=True)
 
     def test_not_paginated_list(self):
         """
         Ensure that we can get a not paginated response when avoiding page query param.
         """
-        self.list_assertions(paginated=False,
-                             response_data_count=len(self.products))
+        self.list_asserts(paginated=False,
+                          response_data_count=len(self.products))
 
     def test_json_schema(self):
         """
@@ -130,8 +130,8 @@ class TestProductCategoryList(APITestCase):
         self.v = Validator(product_category_schema)
 
     def test_not_paginated_list(self):
-        self.list_assertions(paginated=False,
-                             response_data_count=len(self.product_categories))
+        self.list_asserts(paginated=False,
+                          response_data_count=len(self.product_categories))
 
     def test_json_schema(self):
         response = self.get()
@@ -140,4 +140,4 @@ class TestProductCategoryList(APITestCase):
          for category in response.data]
 
     def test_num_of_queries(self):
-        self.assertNumQueries(1, self.get)
+        self.assertNumQueries(2, self.get)

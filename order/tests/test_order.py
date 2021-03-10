@@ -16,7 +16,7 @@ class TestOrderCreate(APITestCase):
     @patch('order.models.send_order_invoice_email', lambda _: None)
     def test_valid_create(self):
         data = get_valid_order_create_dict()
-        self.creation_assertions(posted_data=data)
+        self.create_asserts(posted_data=data)
 
     def test_invalid_create_return_bad_request(self):
         invalid_data = get_invalid_order_create_dict()
