@@ -28,7 +28,7 @@ class APITestCase(RestAPITestCase):
             raise ValueError("no url set in %s" % (self.__class__,))
 
     @staticmethod
-    def get_url_with_pk(view_name, pk):
+    def get_with_pk(view_name, pk):
         return reverse(view_name, kwargs={'pk': pk})
 
     def get(self, data=None, **kwargs):
@@ -46,11 +46,11 @@ class APITestCase(RestAPITestCase):
     def delete(self, data=None):
         return self.client.delete(self.url, data)
 
-    def creation_assertions(self, posted_data, should_be_in_response=None):
+    def create_asserts(self, posted_data, should_be_in_response=None):
         self.response = self.post(
-            data=json.dumps(posted_data),
-            content_type='application/json'
-            )
+                data=json.dumps(posted_data),
+                content_type='application/json'
+                )
 
         self.assertEqual(self.response.status_code, status.HTTP_201_CREATED)
         data = self.response.data
@@ -63,7 +63,7 @@ class APITestCase(RestAPITestCase):
                     continue
                 self.assertEqual(data[field], posted_data[field])
 
-    def list_assertions(self, paginated, response_data_count=None):
+    def list_asserts(self, paginated, response_data_count=None):
         page_size = settings.REST_FRAMEWORK['PAGE_SIZE']
         query_params = {'page': 1} if paginated else None
 
@@ -85,7 +85,7 @@ class APITestCase(RestAPITestCase):
             if response_data_count:
                 self.assertEqual(len(self.response.data), response_data_count)
 
-    def retrieve_assertions(self, url):
+    def retrieve_asserts(self, url):
         self.response = self.client.get(url)
         pk = int(url.split('/')[-2])
 
@@ -94,14 +94,14 @@ class APITestCase(RestAPITestCase):
         self.assertNotIsInstance(data, list)
         self.assertEqual(data['id'], pk)
 
-    def update_assertions(self, url, update_data, instance,
-                          should_be_updated=None):
+    def update_asserts(self, url, update_data, instance,
+                       should_be_updated=None):
         update_data['id'] = instance.pk
         response = self.client.put(
-            path=url,
-            data=json.dumps(update_data),
-            content_type='application/json'
-            )
+                path=url,
+                data=json.dumps(update_data),
+                content_type='application/json'
+                )
         instance.refresh_from_db()
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
@@ -112,7 +112,7 @@ class APITestCase(RestAPITestCase):
             for field in should_be_updated:
                 self.assertEqual(getattr(instance, field), data.get(field))
 
-    def delete_assertions(self, url, instance, logic=True):
+    def delete_asserts(self, url, instance, logic=True):
         response = self.client.delete(url)
 
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)

@@ -1,12 +1,13 @@
 from django.contrib import admin
 
-from order.models import Leather, LeatherSerial, Order, Product, ProductCategory
+from order.models import Leather, LeatherSerial, Order, Product, \
+    ProductCategory, ProductSubCategory
 
 
 @admin.register(Order)
 class PostAdmin(admin.ModelAdmin):
     list_display = (
-    'upper_case_name', 'phone', 'address', 'date_last_updated', 'deleted')
+        'upper_case_name', 'phone', 'address', 'date_last_updated', 'deleted')
     list_display_links = ('upper_case_name',)
     list_editable = ('deleted',)
     list_filter = ('deleted',)
@@ -48,10 +49,20 @@ class PostAdmin(admin.ModelAdmin):
     search_fields = ('name',)
 
 
+@admin.register(ProductSubCategory)
+class PostAdmin(admin.ModelAdmin):
+    list_display = ('name', 'category', 'deleted',)
+    list_display_links = ('name',)
+    list_editable = ('category', 'deleted',)
+    list_filter = ('name', 'category', 'deleted',)
+    search_fields = ('name',)
+
+
 @admin.register(Product)
 class PostAdmin(admin.ModelAdmin):
-    list_display = ('id', 'image', 'category', 'price', 'deleted',)
-    list_editable = ('image', 'category', 'price', 'deleted',)
+    list_display = ('id', 'image', 'category', 'sub_category', 'price',
+                    'deleted',)
+    list_editable = ('image', 'category', 'sub_category', 'price', 'deleted',)
     list_display_links = ('id',)
-    list_filter = ('category', 'deleted',)
+    list_filter = ('category', 'sub_category', 'deleted',)
     search_fields = ('deleted',)

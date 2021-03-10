@@ -21,11 +21,11 @@ class TestLeatherList(APITestCase):
         self.v = Validator(leather_schema)
 
     def test_paginated_list(self):
-        self.list_assertions(paginated=True)
+        self.list_asserts(paginated=True)
 
     def test_not_paginated_list(self):
-        self.list_assertions(paginated=False,
-                             response_data_count=len(self.leathers))
+        self.list_asserts(paginated=False,
+                          response_data_count=len(self.leathers))
 
     def test_json_schema(self):
         response = self.get()
@@ -52,11 +52,11 @@ class TestLeatherSerialList(APITestCase):
         self.v = Validator(leather_serial_schema)
 
     def test_paginated_list(self):
-        self.list_assertions(paginated=True)
+        self.list_asserts(paginated=True)
 
     def test_not_paginated_list(self):
-        self.list_assertions(paginated=False,
-                             response_data_count=len(self.serials))
+        self.list_asserts(paginated=False,
+                          response_data_count=len(self.serials))
 
     def test_json_schema(self):
         response = self.get()

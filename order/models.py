@@ -1,5 +1,3 @@
-from typing import Union
-
 from django.contrib.postgres.fields import ArrayField
 from django.core.validators import MinValueValidator
 from django.db import models
@@ -22,13 +20,16 @@ class LeatherSerial(LogicalDelete):
 
 class Leather(LogicalDelete):
     code = models.CharField(verbose_name='Code', max_length=30)
-    image = models.ImageField(verbose_name='Image', blank=True,
-                              upload_to='leathers')
+    image = models.ImageField(
+            verbose_name='Image',
+            blank=True,
+            upload_to='leathers'
+            )
     serial = models.ForeignKey(
-        to=LeatherSerial,
-        on_delete=models.DO_NOTHING,
-        related_name='leathers'
-        )
+            to=LeatherSerial,
+            on_delete=models.DO_NOTHING,
+            related_name='leathers'
+            )
 
     class Meta:
         ordering = ["code"]
@@ -52,10 +53,25 @@ class ProductCategory(LogicalDelete):
         return self.name
 
 
+class ProductSubCategory(LogicalDelete):
+    name = models.CharField(max_length=50, verbose_name='Name')
+    category = models.ForeignKey(
+            to=ProductCategory,
+            on_delete=models.CASCADE,
+            related_name='sub_categories'
+            )
+
+    class Meta:
+        ordering = ['name']
+        unique_together = ['name', 'category']
+        verbose_name = 'Product Sub category'
+        verbose_name_plural = 'Product Sub categories'
+
+    def __str__(self):
+        return self.name
+
+
 class ProductQuerySet(models.QuerySet):
-    def filter(self, *args, **kwargs) -> Union[
-        'ProductQuerySet', models.QuerySet['Product']]:
-        return super().filter(*args, **kwargs)
 
     def get_id_price_mapping(self) -> dict[int, float]:
         return {p.id: p.price for p in self}
@@ -66,16 +82,30 @@ class ProductQuerySet(models.QuerySet):
 
 class Product(LogicalDelete):
     image = models.ImageField(verbose_name='Image', upload_to='products')
-    price = models.DecimalField(verbose_name='Price', decimal_places=3,
-                                max_digits=10, null=True,
-                                validators=[MinValueValidator(0)])
-    properties = models.JSONField('Properties',
-                                  help_text='Stores all of the product specific '
-                                            'properties.')
-    category = models.ForeignKey(to=ProductCategory,
-                                 on_delete=models.DO_NOTHING,
-                                 related_name='products',
-                                 verbose_name='Category')
+    price = models.DecimalField(
+            verbose_name='Price',
+            decimal_places=3,
+            max_digits=10,
+            null=True,
+            validators=[MinValueValidator(0)]
+            )
+    properties = models.JSONField(
+            'Properties',
+            help_text='Stores all of the product specific properties.'
+            )
+    category = models.ForeignKey(
+            to=ProductCategory,
+            on_delete=models.DO_NOTHING,
+            related_name='products',
+            verbose_name='Category'
+            )
+    sub_category = models.ForeignKey(
+            to=ProductSubCategory,
+            on_delete=models.DO_NOTHING,
+            related_name='products',
+            verbose_name='Sub category',
+            null=True
+            )
 
     objects = ProductQuerySet.as_manager()
 
@@ -86,8 +116,10 @@ class Product(LogicalDelete):
 
     @staticmethod
     def get_id_price_mapping(ids) -> dict[int: float]:
-        products = Product.objects.only('id', 'price').filter(id__in=set(ids))
-        return products.get_id_price_mapping()
+        return Product.objects \
+            .only('id', 'price') \
+            .filter(id__in=set(ids)) \
+            .get_id_price_mapping()
 
 
 class Order(LogicalDelete, Track):
@@ -98,16 +130,20 @@ class Order(LogicalDelete, Track):
     email = models.EmailField(verbose_name='Email', max_length=254, blank=True)
 
     products = ArrayField(models.JSONField(verbose_name='Product details'))
-    inner_leather = models.ForeignKey(to=Leather,
-                                      on_delete=models.CASCADE,
-                                      related_name='inner_orders',
-                                      verbose_name='Inner leather',
-                                      null=True)
-    outer_leather = models.ForeignKey(to=Leather,
-                                      on_delete=models.CASCADE,
-                                      related_name='outer_orders',
-                                      verbose_name='Outer leather',
-                                      null=True)
+    inner_leather = models.ForeignKey(
+            to=Leather,
+            on_delete=models.CASCADE,
+            related_name='inner_orders',
+            verbose_name='Inner leather',
+            null=True
+            )
+    outer_leather = models.ForeignKey(
+            to=Leather,
+            on_delete=models.CASCADE,
+            related_name='outer_orders',
+            verbose_name='Outer leather',
+            null=True
+            )
 
     class Meta:
         ordering = ["-date_created"]
