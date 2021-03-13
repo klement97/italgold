@@ -87,6 +87,7 @@ class Product(LogicalDelete):
             decimal_places=3,
             max_digits=10,
             null=True,
+            blank=True,
             validators=[MinValueValidator(0)]
             )
     properties = models.JSONField(
@@ -104,7 +105,8 @@ class Product(LogicalDelete):
             on_delete=models.DO_NOTHING,
             related_name='products',
             verbose_name='Sub category',
-            null=True
+            null=True,
+            blank=True
             )
 
     objects = ProductQuerySet.as_manager()
