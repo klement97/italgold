@@ -55,15 +55,14 @@ class ProductCategory(LogicalDelete):
 
 class ProductSubCategory(LogicalDelete):
     name = models.CharField(max_length=50, verbose_name='Name')
-    category = models.ForeignKey(
+    category = models.ManyToManyField(
             to=ProductCategory,
-            on_delete=models.CASCADE,
             related_name='sub_categories'
             )
 
     class Meta:
         ordering = ['name']
-        unique_together = ['name', 'category']
+        unique_together = ['name', 'id']
         verbose_name = 'Product Sub category'
         verbose_name_plural = 'Product Sub categories'
 
@@ -100,13 +99,10 @@ class Product(LogicalDelete):
             related_name='products',
             verbose_name='Category'
             )
-    sub_category = models.ForeignKey(
+    sub_category = models.ManyToManyField(
             to=ProductSubCategory,
-            on_delete=models.DO_NOTHING,
             related_name='products',
             verbose_name='Sub category',
-            null=True,
-            blank=True
             )
 
     objects = ProductQuerySet.as_manager()

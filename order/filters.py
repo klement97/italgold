@@ -20,5 +20,5 @@ class ProductFilter(filters.FilterSet):
         if int(value) == 0:
             return queryset
 
-        return queryset.filter(sub_category_id=value)
+        return queryset.filter(sub_category=value)
 

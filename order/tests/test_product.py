@@ -115,6 +115,15 @@ class TestProductList(APITestCase):
         """
         self.assertNumQueries(1, self.get)
 
+    def test_category_filter(self):
+        product = self.products[0]
+        query_params = {
+            'category': product.category.id
+            }
+        response = self.get(data=query_params)
+
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
 
 class TestProductCategoryList(APITestCase):
     url = reverse('product-category')
