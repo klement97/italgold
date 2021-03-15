@@ -51,18 +51,18 @@ class PostAdmin(admin.ModelAdmin):
 
 @admin.register(ProductSubCategory)
 class PostAdmin(admin.ModelAdmin):
-    list_display = ('name', 'category', 'deleted',)
+    list_display = ('name', 'deleted',)
     list_display_links = ('name',)
-    list_editable = ('category', 'deleted',)
+    list_editable = ('deleted',)
     list_filter = ('name', 'category', 'deleted',)
     search_fields = ('name',)
 
 
 @admin.register(Product)
 class PostAdmin(admin.ModelAdmin):
-    list_display = ('id', 'image', 'category', 'sub_category', 'price',
-                    'deleted',)
-    list_editable = ('image', 'category', 'sub_category', 'price', 'deleted',)
+    list_display = ('id', 'image', 'category', 'price', 'deleted',)
+    list_editable = ('image', 'category', 'price', 'deleted',)
     list_display_links = ('id',)
-    list_filter = ('category', 'sub_category', 'deleted',)
+    list_filter = ('category', 'deleted',)
+    filter_horizontal = ('sub_category',)
     search_fields = ('deleted',)

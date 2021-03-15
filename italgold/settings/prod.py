@@ -13,24 +13,27 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 
 DATABASES = {
     'default': dj_database_url.config(
-        conn_max_age=600,
-        ssl_require=True
-        )
+            conn_max_age=600,
+            ssl_require=True
+            )
     }
 
 sentry_sdk.init(
-    dsn=os.getenv('SENTRY_DSN'),
-    integrations=[DjangoIntegration(), RedisIntegration()],
-    traces_sample_rate=1.0,
+        dsn=os.getenv('SENTRY_DSN'),
+        integrations=[DjangoIntegration(), RedisIntegration()],
+        traces_sample_rate=1.0,
 
-    # If you wish to associate users to errors (assuming you are using
-    # django.contrib.auth) you may enable sending PII data.
-    send_default_pii=True
-    )
+        # If you wish to associate users to errors (assuming you are using
+        # django.contrib.auth) you may enable sending PII data.
+        send_default_pii=True
+        )
 
 CORS_ALLOW_HEADERS = list(default_headers) + ['sentry-trace']
-ALLOWED_HOSTS = ['italgold.herokuapp.com', 'italgold.vercel.app',
-                 'italgold-api.herokuapp.com']
+ALLOWED_HOSTS = [
+    'italgold.herokuapp.com',
+    'italgold.vercel.app',
+    'italgold-api.herokuapp.com'
+    ]
 
 STATICFILES_STORAGE = os.getenv('STATICFILES_STORAGE')
 DEFAULT_FILE_STORAGE = os.getenv('DEFAULT_FILE_STORAGE')

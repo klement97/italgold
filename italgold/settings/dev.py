@@ -18,7 +18,7 @@ CACHES = {
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
+        'NAME': 'italgold',
         'USER': 'postgres',
         'PASSWORD': 'postgres',
         'HOST': '172.30.1.7',
