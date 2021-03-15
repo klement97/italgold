@@ -21,4 +21,3 @@ class ProductFilter(filters.FilterSet):
             return queryset
 
         return queryset.filter(sub_category=value)
-
