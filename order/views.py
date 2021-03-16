@@ -1,3 +1,5 @@
+from django.utils.decorators import method_decorator
+from django.views.decorators.cache import cache_page
 from rest_framework.generics import CreateAPIView, ListAPIView, RetrieveAPIView
 
 from order.filters import ProductFilter
@@ -17,7 +19,7 @@ class OrderRetrieveAPIView(RetrieveAPIView):
     queryset = Order.objects.all()
     serializer_class = OrderReadSerializer
 
-    # @method_decorator(cache_page(None))  # never expire
+    @method_decorator(cache_page(60 * 60))  # 60 minutes
     def get(self, request, *args, **kwargs):
         return super().get(request, *args, **kwargs)
 
@@ -26,7 +28,7 @@ class ProductRetrieveAPIView(RetrieveAPIView):
     queryset = Product.objects.select_related('category').filter(deleted=False)
     serializer_class = ProductSerializer
 
-    # @method_decorator(cache_page(60 * 60 * 2))
+    @method_decorator(cache_page(60 * 10))  # 10 minutes
     def get(self, request, *args, **kwargs):
         return super().get(request, *args, **kwargs)
 
@@ -38,7 +40,7 @@ class ProductListAPIView(ListAPIView):
         .select_related('category') \
         .filter(deleted=False)
 
-    # @method_decorator(cache_page(60 * 60 * 2))
+    @method_decorator(cache_page(60 * 10))  # 10 minutes
     def get(self, request, *args, **kwargs):
         return super().get(request, *args, **kwargs)
 
@@ -49,7 +51,7 @@ class ProductCategoryListAPIView(ListAPIView):
         .filter(deleted=False)
     serializer_class = ProductCategoryListSerializer
 
-    # @method_decorator(cache_page(None))
+    @method_decorator(cache_page(60 * 60))  # 60 minutes
     def get(self, request, *args, **kwargs):
         return super().get(request, *args, **kwargs)
 
@@ -59,16 +61,17 @@ class LeatherListAPIView(ListAPIView):
     queryset = Leather.objects.filter(deleted=False)
     filterset_fields = ('code', 'serial')
 
-    # @method_decorator(cache_page(None))
+    @method_decorator(cache_page(60 * 60))  # 60 minutes
     def get(self, request, *args, **kwargs):
         return super().get(request, *args, **kwargs)
 
 
 class LeatherSerialListAPIView(ListAPIView):
     serializer_class = LeatherSerialSerializer
-    queryset = LeatherSerial.objects.prefetch_related('leathers').filter(
-            deleted=False)
+    queryset = LeatherSerial.objects. \
+        prefetch_related('leathers'). \
+        filter(deleted=False)
 
-    # @method_decorator(cache_page(None))
+    @method_decorator(cache_page(60 * 60))  # 60 minutes
     def get(self, request, *args, **kwargs):
         return super().get(request, *args, **kwargs)
