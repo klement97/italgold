@@ -46,6 +46,8 @@ AWS_QUERYSTRING_AUTH = True
 AWS_QUERYSTRING_EXPIRE = 3600  # seconds
 AWS_S3_FILE_OVERWRITE = False
 AWS_IS_GZIPPED = True
+AWS_S3_SIGNATURE_VERSION = 's3v4'
+AWS_S3_REGION_NAME = 'eu-central-1'
 
 redis_url = urlparse(os.environ.get('REDISCLOUD_URL'))
 CACHES = {
