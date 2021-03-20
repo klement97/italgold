@@ -1,9 +1,9 @@
 from django.contrib.postgres.fields import ArrayField
 from django.core.validators import MinValueValidator
-from django.db import models
+from django.db import connection, models
 
 from common.models import LogicalDelete, Track
-from common.utils import send_order_invoice_email
+from common.utils import dictfetchall, send_order_invoice_email
 
 
 class LeatherSerial(LogicalDelete):
@@ -41,8 +41,28 @@ class Leather(LogicalDelete):
         return self.code
 
 
+class ProductCategoryQuerySet(models.QuerySet):
+
+    @staticmethod
+    def get_with_sub_categories():
+        with connection.cursor() as cursor:
+            cursor.execute(
+                    """
+                    select o.name, array_agg(distinct op.name) as sub_categories
+                    from order_product p
+                             inner join order_product_sub_category opsc on p.id = opsc.product_id
+                             inner join order_productsubcategory op on op.id = opsc.productsubcategory_id
+                             inner join order_productcategory o on o.id = p.category_id
+                    group by p.category_id, o.name;
+                    """
+                    )
+            return dictfetchall(cursor)
+
+
 class ProductCategory(LogicalDelete):
     name = models.CharField(max_length=50, verbose_name='Name')
+
+    objects = ProductCategoryQuerySet.as_manager()
 
     class Meta:
         ordering = ["name"]
