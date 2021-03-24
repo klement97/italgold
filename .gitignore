@@ -152,3 +152,4 @@ KRAL_KUTU
 .env
 *.env
 *env
+*.dump

@@ -21,7 +21,7 @@ DATABASES = {
         'NAME': 'italgold',
         'USER': 'postgres',
         'PASSWORD': 'postgres',
-        'HOST': '172.30.1.7',
+        'HOST': 'localhost',
         'PORT': '5432',
         }
     }
