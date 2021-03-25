@@ -50,16 +50,23 @@ AWS_S3_SIGNATURE_VERSION = 's3v4'
 AWS_S3_REGION_NAME = 'eu-central-1'
 
 redis_url = urlparse(os.environ.get('REDISCLOUD_URL'))
+#CACHES = {
+ #   'default': {
+  #      'BACKEND': 'redis_cache.RedisCache',
+   #     'LOCATION': f'{redis_url.hostname}:{redis_url.port}',
+    #    'OPTIONS': {
+     #       'PASSWORD': redis_url.password,
+      #      'DB': 0,
+       #     }
+       # }
+    #}
+
 CACHES = {
-    'default': {
-        'BACKEND': 'redis_cache.RedisCache',
-        'LOCATION': f'{redis_url.hostname}:{redis_url.port}',
-        'OPTIONS': {
-            'PASSWORD': redis_url.password,
-            'DB': 0,
-            }
-        }
+    "default": {
+         "BACKEND": "redis_cache.RedisCache",
+         "LOCATION": os.environ.get('REDIS_URL'),
     }
+}
 
 DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL')
 ADMINS = [
