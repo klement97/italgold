@@ -4140,7 +4140,7 @@
   pk: 336
   fields:
     deleted: false
-    image: products/BY 500 SERIES.jpg
+    image: products/BY 500 SERIES.webp
     price: null
     properties:
       code: by052
@@ -4164,7 +4164,7 @@
   pk: 337
   fields:
     deleted: false
-    image: products/BY 0200 SERIES.jpg
+    image: products/BY 0200 SERIES.webp
     price: null
     properties:
       code: by022
@@ -4188,7 +4188,7 @@
   pk: 338
   fields:
     deleted: false
-    image: products/BY 0800 SERIES.JPG
+    image: products/BY 0800 SERIES.webp
     price: null
     properties:
       code: by080
@@ -4212,7 +4212,7 @@
   pk: 339
   fields:
     deleted: false
-    image: products/BY 0100 SERIES.jpg
+    image: products/BY 0100 SERIES.webp
     price: null
     properties:
       code: by010
@@ -4234,7 +4234,7 @@
   pk: 340
   fields:
     deleted: false
-    image: products/BY 0400 SERIES.jpg
+    image: products/BY 0400 SERIES.webp
     price: null
     properties:
       code: by042
@@ -4260,7 +4260,7 @@
   pk: 341
   fields:
     deleted: false
-    image: products/BY 0600 SERIES.jpg
+    image: products/BY 0600 SERIES.webp
     price: null
     properties:
       code: by062
@@ -4280,7 +4280,7 @@
   pk: 342
   fields:
     deleted: false
-    image: products/BY 0700 SERIES.jpg
+    image: products/BY 0700 SERIES.webp
     price: null
     properties:
       code: by070
@@ -4300,7 +4300,7 @@
   pk: 343
   fields:
     deleted: false
-    image: products/GY 0400 SERIES.jpg
+    image: products/GY 0400 SERIES.webp
     price: null
     properties:
       code: gy040
@@ -4322,7 +4322,7 @@
   pk: 344
   fields:
     deleted: false
-    image: products/YZ 0600.JPG
+    image: products/YZ 0600.webp
     price: null
     properties:
       code: yz060
@@ -4346,7 +4346,7 @@
   pk: 345
   fields:
     deleted: false
-    image: products/YZ 0140.jpg
+    image: products/YZ 0140.webp
     price: null
     properties:
       code: yz014
@@ -4390,7 +4390,7 @@
   pk: 347
   fields:
     deleted: false
-    image: products/YZ 0200.jpg
+    image: products/YZ 0200.webp
     price: null
     properties:
       code: Yz020
@@ -4412,7 +4412,7 @@
   pk: 348
   fields:
     deleted: false
-    image: products/YZ 0300.jpg
+    image: products/YZ 0300.webp
     price: null
     properties:
       code: Yz030
@@ -4434,7 +4434,7 @@
   pk: 349
   fields:
     deleted: false
-    image: products/GY 0100 SERIES.jpg
+    image: products/GY 0100 SERIES.webp
     price: null
     properties:
       code: gy010
@@ -4478,7 +4478,7 @@
   pk: 351
   fields:
     deleted: false
-    image: products/GKL 0400.jpg
+    image: products/GKL 0400.webp
     price: null
     properties:
       code: gkl04
@@ -4498,7 +4498,7 @@
   pk: 352
   fields:
     deleted: false
-    image: products/KL 0200.jpg
+    image: products/KL 0200.webp
     price: null
     properties:
       code: kl020
@@ -4524,7 +4524,7 @@
   pk: 353
   fields:
     deleted: false
-    image: products/KP 0600.jpg
+    image: products/KP 0600.webp
     price: null
     properties:
       code: kp060
@@ -4547,7 +4547,7 @@
   pk: 354
   fields:
     deleted: false
-    image: products/KL 0300.jpg
+    image: products/KL 0300.webp
     price: null
     properties:
       code: kl030
@@ -4569,7 +4569,7 @@
   pk: 355
   fields:
     deleted: false
-    image: products/BL 0100.jpg
+    image: products/BL 0100.webp
     price: null
     properties:
       code: Bl011
@@ -4591,7 +4591,7 @@
   pk: 356
   fields:
     deleted: false
-    image: products/KL 0100.jpg
+    image: products/KL 0100.webp
     price: null
     properties:
       code: kl010
@@ -4635,7 +4635,7 @@
   pk: 358
   fields:
     deleted: false
-    image: products/KP 0200.jpg
+    image: products/KP 0200.webp
     price: null
     properties:
       code: kp020
@@ -4655,7 +4655,7 @@
   pk: 359
   fields:
     deleted: false
-    image: products/GY 0200 SERIES.jpg
+    image: products/GY 0200 SERIES.webp
     price: null
     properties:
       code: gy020
@@ -4677,7 +4677,7 @@
   pk: 360
   fields:
     deleted: false
-    image: products/UC 0800.jpg
+    image: products/UC 0800.webp
     price: null
     properties:
       code: uc080
@@ -4697,7 +4697,7 @@
   pk: 361
   fields:
     deleted: false
-    image: products/KL 0800.jpg
+    image: products/KL 0800.webp
     price: null
     properties:
       code: kl080
@@ -4719,7 +4719,7 @@
   pk: 362
   fields:
     deleted: false
-    image: products/YZ 0700.JPG
+    image: products/YZ 0700.webp
     price: null
     properties:
       code: Yz070
@@ -4739,7 +4739,7 @@
   pk: 363
   fields:
     deleted: false
-    image: products/KC 0700.JPG
+    image: products/KC 0700.webp
     price: null
     properties:
       code: Kc070
@@ -4759,7 +4759,7 @@
   pk: 364
   fields:
     deleted: false
-    image: products/KP 0700.JPG
+    image: products/KP 0700.webp
     price: null
     properties:
       code: Kp070
@@ -4779,7 +4779,7 @@
   pk: 365
   fields:
     deleted: false
-    image: products/BY 01300.jpg
+    image: products/BY 01300.webp
     price: null
     properties:
       code: by010
