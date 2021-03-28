@@ -1,6 +1,7 @@
 import os
 
 from django.conf import settings
+from django.core import management
 from django.core.management import BaseCommand
 
 
@@ -21,9 +22,7 @@ class Command(BaseCommand):
                 absolute_path = os.path.join(fixtures_path, fixtures[i])
                 fixtures[i] = absolute_path
 
-            print(fixtures)
-
-            # management.call_command('loaddata', *fixtures)
+            management.call_command('loaddata', *fixtures)
         else:
             self.stdout.write(
                     self.style.ERROR(
