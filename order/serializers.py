@@ -11,9 +11,15 @@ class IDNameSerializer(serializers.Serializer):
 
 
 class LeatherSerializer(ModelSerializer):
+    name = serializers.SerializerMethodField()
+
     class Meta:
         model = Leather
-        fields = ['id', 'code', 'image']
+        fields = ['id', 'code', 'image', 'name']
+
+    @staticmethod
+    def get_name(leather: Leather):
+        return leather.image.name.split('/')[-1].split('.')[0].upper()
 
 
 class LeatherSerialSerializer(ModelSerializer):
