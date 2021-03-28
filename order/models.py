@@ -165,7 +165,7 @@ class Order(LogicalDelete, Track):
     def sanitize_products_field(cls, products: list[dict]):
         required_fields = [
             'product', 'quantity', 'price', 'code', 'width', 'height', 'length',
-            'inner_leather', 'outer_leather'
+            'inner_leather', 'outer_leather', 'notes'
             ]
         for i, unit in enumerate(products):
             sanitized_unit = {}
