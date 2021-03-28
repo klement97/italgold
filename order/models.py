@@ -160,3 +160,18 @@ class Order(LogicalDelete, Track):
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
         send_order_invoice_email(self)
+
+    @classmethod
+    def sanitize_products_field(cls, products: list[dict]):
+        required_fields = [
+            'product', 'quantity', 'price', 'code', 'width', 'height', 'length',
+            'inner_leather', 'outer_leather'
+            ]
+        for i, unit in enumerate(products):
+            sanitized_unit = {}
+            for field in required_fields:
+                sanitized_unit[field] = unit.get(field)
+
+            products[i] = sanitized_unit
+
+        return products

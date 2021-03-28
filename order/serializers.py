@@ -31,8 +31,6 @@ class OrderReadSerializer(serializers.Serializer):
     phone = serializers.CharField()
     address = serializers.CharField()
     products = serializers.JSONField()
-    inner_leather = LeatherSerializer()
-    outer_leather = LeatherSerializer()
     date_created = serializers.DateTimeField()
     date_last_updated = serializers.DateTimeField()
 
@@ -42,8 +40,11 @@ class OrderWriteSerializer(ModelSerializer):
         model = Order
         fields = [
             'id', 'first_name', 'last_name', 'phone', 'address', 'products',
-            'inner_leather', 'outer_leather'
             ]
+
+    def create(self, validated_data):
+        validated_data['products'] = Order.sanitize_products_field(products=validated_data['products'])
+        return super().create(validated_data)
 
 
 class ProductSubCategorySerializer(IDNameSerializer):
