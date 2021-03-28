@@ -148,20 +148,6 @@ class Order(LogicalDelete, Track):
     email = models.EmailField(verbose_name='Email', max_length=254, blank=True)
 
     products = ArrayField(models.JSONField(verbose_name='Product details'))
-    inner_leather = models.ForeignKey(
-            to=Leather,
-            on_delete=models.CASCADE,
-            related_name='inner_orders',
-            verbose_name='Inner leather',
-            null=True
-            )
-    outer_leather = models.ForeignKey(
-            to=Leather,
-            on_delete=models.CASCADE,
-            related_name='outer_orders',
-            verbose_name='Outer leather',
-            null=True
-            )
 
     class Meta:
         ordering = ["-date_created"]
