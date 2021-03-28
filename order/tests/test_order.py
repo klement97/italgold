@@ -45,14 +45,13 @@ class TestOrderCreate(APITestCase):
            lambda *args, **kwargs: None)
     def test_num_of_queries(self):
         data = get_valid_order_create_dict()
-        query_count = 3
 
         self.assertNumQueries(
-            query_count,
-            func=self.post,
-            data=data,
-            format='json'
-            )
+                num=1,
+                func=self.post,
+                data=data,
+                format='json'
+                )
 
     @patch.object(SendGridAPIClient, 'send')
     def test_email_is_sent_to_manager(self, send: MagicMock):
