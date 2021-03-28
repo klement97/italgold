@@ -19,12 +19,10 @@ gunicorn==20.0.4
 idna==2.10
 jmespath==0.10.0
 model-bakery==1.2.1
-Pillow==8.1.1
 psycopg2==2.8.6
 python-dateutil==2.8.1
 python-http-client==3.3.1
 pytz==2020.5
-pywatchman==1.4.1
 redis==3.5.3
 requests==2.25.1
 s3transfer==0.3.4

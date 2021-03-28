@@ -20,7 +20,7 @@ class LeatherSerial(LogicalDelete):
 
 class Leather(LogicalDelete):
     code = models.CharField(verbose_name='Code', max_length=30)
-    image = models.ImageField(
+    image = models.FileField(
             verbose_name='Image',
             blank=True,
             upload_to='leathers'
@@ -100,7 +100,7 @@ class ProductQuerySet(models.QuerySet):
 
 
 class Product(LogicalDelete):
-    image = models.ImageField(verbose_name='Image', upload_to='products')
+    image = models.FileField(verbose_name='Image', upload_to='products')
     price = models.DecimalField(
             verbose_name='Price',
             decimal_places=3,
