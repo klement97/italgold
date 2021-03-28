@@ -20,7 +20,7 @@ class LeatherSerial(LogicalDelete):
 
 class Leather(LogicalDelete):
     code = models.CharField(verbose_name='Code', max_length=30)
-    image = models.ImageField(
+    image = models.FileField(
             verbose_name='Image',
             blank=True,
             upload_to='leathers'
@@ -100,7 +100,7 @@ class ProductQuerySet(models.QuerySet):
 
 
 class Product(LogicalDelete):
-    image = models.ImageField(verbose_name='Image', upload_to='products')
+    image = models.FileField(verbose_name='Image', upload_to='products')
     price = models.DecimalField(
             verbose_name='Price',
             decimal_places=3,
@@ -148,20 +148,6 @@ class Order(LogicalDelete, Track):
     email = models.EmailField(verbose_name='Email', max_length=254, blank=True)
 
     products = ArrayField(models.JSONField(verbose_name='Product details'))
-    inner_leather = models.ForeignKey(
-            to=Leather,
-            on_delete=models.CASCADE,
-            related_name='inner_orders',
-            verbose_name='Inner leather',
-            null=True
-            )
-    outer_leather = models.ForeignKey(
-            to=Leather,
-            on_delete=models.CASCADE,
-            related_name='outer_orders',
-            verbose_name='Outer leather',
-            null=True
-            )
 
     class Meta:
         ordering = ["-date_created"]
@@ -174,3 +160,18 @@ class Order(LogicalDelete, Track):
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
         send_order_invoice_email(self)
+
+    @classmethod
+    def sanitize_products_field(cls, products: list[dict]):
+        required_fields = [
+            'product', 'quantity', 'price', 'code', 'width', 'height', 'length',
+            'inner_leather', 'outer_leather', 'notes'
+            ]
+        for i, unit in enumerate(products):
+            sanitized_unit = {}
+            for field in required_fields:
+                sanitized_unit[field] = unit.get(field)
+
+            products[i] = sanitized_unit
+
+        return products

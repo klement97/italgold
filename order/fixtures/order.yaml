@@ -1019,7 +1019,7 @@
 - model: order.productcategory
   pk: 2
   fields:
-    deleted: false
+    deleted: true
     name: Box
 - model: order.productcategory
   pk: 5
@@ -1029,7 +1029,7 @@
 - model: order.productcategory
   pk: 7
   fields:
-    deleted: false
+    deleted: true
     name: Display
 - model: order.productsubcategory
   pk: 2
