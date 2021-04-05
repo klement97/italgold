@@ -1116,76 +1116,6 @@
     category:
     - 1
 - model: order.product
-  pk: 63
-  fields:
-    deleted: false
-    image: products/ST-5.webp
-    price: '25.000'
-    properties:
-      code: '5'
-      width: 35
-      height: 2
-      length: 20
-    category: 1
-    sub_category:
-    - 12
-- model: order.product
-  pk: 64
-  fields:
-    deleted: false
-    image: products/ST-10-a.webp
-    price: '25.000'
-    properties:
-      code: 10-a
-      width: 35
-      height: 2
-      length: 20
-    category: 1
-    sub_category:
-    - 12
-- model: order.product
-  pk: 65
-  fields:
-    deleted: false
-    image: products/ST-11.webp
-    price: '25.000'
-    properties:
-      code: '11'
-      width: 35
-      height: 2
-      length: 20
-    category: 1
-    sub_category:
-    - 12
-- model: order.product
-  pk: 66
-  fields:
-    deleted: false
-    image: products/ST-2.webp
-    price: '25.000'
-    properties:
-      code: '2'
-      width: 35
-      height: 2
-      length: 20
-    category: 1
-    sub_category:
-    - 12
-- model: order.product
-  pk: 67
-  fields:
-    deleted: false
-    image: products/ST-14-a.webp
-    price: '25.000'
-    properties:
-      code: 14-a
-      width: 35
-      height: 2
-      length: 20
-    category: 1
-    sub_category:
-    - 12
-- model: order.product
   pk: 68
   fields:
     deleted: false
@@ -1200,41 +1130,13 @@
     sub_category:
     - 12
 - model: order.product
-  pk: 69
-  fields:
-    deleted: false
-    image: products/ST-13-a.webp
-    price: '25.000'
-    properties:
-      code: 13-a
-      width: 35
-      height: 2
-      length: 20
-    category: 1
-    sub_category:
-    - 12
-- model: order.product
   pk: 70
   fields:
     deleted: false
     image: products/ST-8.webp
-    price: '25.000'
+    price: '20.000'
     properties:
       code: '8'
-      width: 35
-      height: 2
-      length: 20
-    category: 1
-    sub_category:
-    - 12
-- model: order.product
-  pk: 71
-  fields:
-    deleted: false
-    image: products/ST-9-b.webp
-    price: '25.000'
-    properties:
-      code: 9-b
       width: 35
       height: 2
       length: 20
@@ -1260,7 +1162,7 @@
   fields:
     deleted: false
     image: products/ST-3.webp
-    price: '25.000'
+    price: '18.000'
     properties:
       code: '3'
       width: 35
@@ -1274,7 +1176,7 @@
   fields:
     deleted: false
     image: products/ST-7.webp
-    price: '25.000'
+    price: '28.000'
     properties:
       code: '7'
       width: 35
@@ -1298,55 +1200,13 @@
     sub_category:
     - 12
 - model: order.product
-  pk: 76
-  fields:
-    deleted: false
-    image: products/ST-9-a.webp
-    price: '25.000'
-    properties:
-      code: 9-a
-      width: 35
-      height: 2
-      length: 20
-    category: 1
-    sub_category:
-    - 12
-- model: order.product
   pk: 77
   fields:
     deleted: false
     image: products/ST-1.webp
-    price: '25.000'
+    price: '20.000'
     properties:
       code: '1'
-      width: 35
-      height: 2
-      length: 20
-    category: 1
-    sub_category:
-    - 12
-- model: order.product
-  pk: 78
-  fields:
-    deleted: false
-    image: products/ST-3-b.webp
-    price: '25.000'
-    properties:
-      code: 3-b
-      width: 35
-      height: 2
-      length: 20
-    category: 1
-    sub_category:
-    - 12
-- model: order.product
-  pk: 79
-  fields:
-    deleted: false
-    image: products/ST-7-a.webp
-    price: '25.000'
-    properties:
-      code: 7-a
       width: 35
       height: 2
       length: 20
@@ -1358,23 +1218,9 @@
   fields:
     deleted: false
     image: products/ST-12.webp
-    price: '25.000'
+    price: '16.000'
     properties:
       code: '12'
-      width: 35
-      height: 2
-      length: 20
-    category: 1
-    sub_category:
-    - 12
-- model: order.product
-  pk: 81
-  fields:
-    deleted: false
-    image: products/ST-6-b.webp
-    price: '25.000'
-    properties:
-      code: 6-b
       width: 35
       height: 2
       length: 20
@@ -1396,55 +1242,13 @@
     sub_category:
     - 12
 - model: order.product
-  pk: 83
-  fields:
-    deleted: false
-    image: products/ST-4.webp
-    price: '25.000'
-    properties:
-      code: '4'
-      width: 35
-      height: 2
-      length: 20
-    category: 1
-    sub_category:
-    - 12
-- model: order.product
-  pk: 84
-  fields:
-    deleted: false
-    image: products/ST-6-a.webp
-    price: '25.000'
-    properties:
-      code: 6-a
-      width: 35
-      height: 2
-      length: 20
-    category: 1
-    sub_category:
-    - 12
-- model: order.product
   pk: 85
   fields:
     deleted: false
     image: products/ST-9.webp
-    price: '25.000'
+    price: '18.000'
     properties:
       code: '9'
-      width: 35
-      height: 2
-      length: 20
-    category: 1
-    sub_category:
-    - 12
-- model: order.product
-  pk: 86
-  fields:
-    deleted: false
-    image: products/ST-3-a.webp
-    price: '25.000'
-    properties:
-      code: 3-a
       width: 35
       height: 2
       length: 20
@@ -1638,7 +1442,7 @@
   fields:
     deleted: false
     image: products/17.webp
-    price: null
+    price: '24.000'
     properties:
       code: TB17
       width: 23.0
@@ -1683,7 +1487,7 @@
   fields:
     deleted: false
     image: products/6.webp
-    price: null
+    price: '36.000'
     properties:
       code: TB6
       width: 23.0
@@ -1711,7 +1515,7 @@
   fields:
     deleted: false
     image: products/27.webp
-    price: null
+    price: '22.000'
     properties:
       code: TB27
       width: 23.0
@@ -1725,7 +1529,7 @@
   fields:
     deleted: false
     image: products/19.webp
-    price: null
+    price: '22.000'
     properties:
       code: TB19
       width: 23.0
@@ -1739,7 +1543,7 @@
   fields:
     deleted: false
     image: products/3.webp
-    price: null
+    price: '30.000'
     properties:
       code: TB3
       width: 23.0
@@ -1767,7 +1571,7 @@
   fields:
     deleted: false
     image: products/32.webp
-    price: null
+    price: '50.000'
     properties:
       code: TB32
       width: 42.0
@@ -1781,7 +1585,7 @@
   fields:
     deleted: false
     image: products/22.webp
-    price: null
+    price: '32.000'
     properties:
       code: TB22
       width: 23.0
@@ -1796,7 +1600,7 @@
   fields:
     deleted: false
     image: products/8.webp
-    price: null
+    price: '34.000'
     properties:
       code: TB8
       width: 23.0
@@ -1811,7 +1615,7 @@
   fields:
     deleted: false
     image: products/11.webp
-    price: null
+    price: '38.000'
     properties:
       code: TB11
       width: 23.0
@@ -1841,7 +1645,7 @@
   fields:
     deleted: false
     image: products/16.webp
-    price: null
+    price: '30.000'
     properties:
       code: TB16
       width: 23.0
@@ -1856,7 +1660,7 @@
   fields:
     deleted: false
     image: products/28.webp
-    price: null
+    price: '22.000'
     properties:
       code: TB28
       width: 23.0
@@ -1870,7 +1674,7 @@
   fields:
     deleted: false
     image: products/1.webp
-    price: null
+    price: '22.000'
     properties:
       code: TB1
       width: 23.0
@@ -1914,7 +1718,7 @@
   fields:
     deleted: false
     image: products/23.webp
-    price: null
+    price: '45.000'
     properties:
       code: TB23
       width: 23.0
@@ -1928,7 +1732,7 @@
   fields:
     deleted: false
     image: products/31.webp
-    price: null
+    price: '45.000'
     properties:
       code: TB31
       width: 42.0
@@ -1956,7 +1760,7 @@
   fields:
     deleted: false
     image: products/29.webp
-    price: null
+    price: '48.000'
     properties:
       code: TB29
       width: 23.0
@@ -1984,7 +1788,7 @@
   fields:
     deleted: false
     image: products/4.webp
-    price: null
+    price: '36.000'
     properties:
       code: TB4
       width: 23.0
@@ -2014,7 +1818,7 @@
   fields:
     deleted: false
     image: products/14.webp
-    price: null
+    price: '28.000'
     properties:
       code: TB14
       width: 23.0
@@ -2028,7 +1832,7 @@
   fields:
     deleted: false
     image: products/30.webp
-    price: null
+    price: '24.000'
     properties:
       code: TB30
       width: 23.0
@@ -2042,7 +1846,7 @@
   fields:
     deleted: false
     image: products/5.webp
-    price: null
+    price: '38.000'
     properties:
       code: TB5
       width: 23.0
@@ -2072,7 +1876,7 @@
   fields:
     deleted: false
     image: products/33.webp
-    price: null
+    price: '40.000'
     properties:
       code: TB33
       width: 23.0
@@ -2086,7 +1890,7 @@
   fields:
     deleted: false
     image: products/21.webp
-    price: null
+    price: '28.000'
     properties:
       code: TB21
       width: 23.0
@@ -2114,7 +1918,7 @@
   fields:
     deleted: false
     image: products/26.webp
-    price: null
+    price: '22.000'
     properties:
       code: TB26
       width: 23.0
@@ -2128,7 +1932,7 @@
   fields:
     deleted: false
     image: products/18.webp
-    price: null
+    price: '36.000'
     properties:
       code: TB18
       width: 23.0
@@ -2143,7 +1947,7 @@
   fields:
     deleted: false
     image: products/2.webp
-    price: null
+    price: '28.000'
     properties:
       code: TB2
       width: 23.0
@@ -2199,7 +2003,7 @@
   fields:
     deleted: false
     image: products/10.webp
-    price: null
+    price: '36.000'
     properties:
       code: TB10
       width: 23.0
@@ -2229,7 +2033,7 @@
   fields:
     deleted: false
     image: products/25.webp
-    price: null
+    price: '22.000'
     properties:
       code: TB25
       width: 23.0
@@ -2257,7 +2061,7 @@
   fields:
     deleted: false
     image: products/20.webp
-    price: null
+    price: '20.000'
     properties:
       code: TB20
       width: 23.0
@@ -2271,7 +2075,7 @@
   fields:
     deleted: false
     image: products/15.webp
-    price: null
+    price: '38.000'
     properties:
       code: TB15
       width: 23.0
@@ -2314,7 +2118,7 @@
   fields:
     deleted: false
     image: products/12.webp
-    price: null
+    price: '38.000'
     properties:
       code: TB12
       width: 23.0
@@ -2328,7 +2132,7 @@
   fields:
     deleted: false
     image: products/24.webp
-    price: null
+    price: '22.000'
     properties:
       code: TB24
       width: 23.0
@@ -2342,7 +2146,7 @@
   fields:
     deleted: false
     image: products/13.webp
-    price: null
+    price: '38.000'
     properties:
       code: TB13
       width: 23.0
@@ -2384,7 +2188,7 @@
   fields:
     deleted: false
     image: products/7.webp
-    price: null
+    price: '34.000'
     properties:
       code: TB7
       width: 23.0
@@ -2440,7 +2244,7 @@
   fields:
     deleted: false
     image: products/9.webp
-    price: null
+    price: '34.000'
     properties:
       code: TB9
       width: 23.0
@@ -2449,20 +2253,6 @@
     category: 1
     sub_category:
     - 2
-- model: order.product
-  pk: 206
-  fields:
-    deleted: false
-    image: products/35.webp
-    price: null
-    properties:
-      code: TB35
-      width: 23.0
-      height: 4.0
-      length: 27.0
-    category: 1
-    sub_category:
-    - 6
 - model: order.product
   pk: 207
   fields:
