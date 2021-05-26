@@ -16,20 +16,12 @@ services:
     image: postgres
     volumes:
       - postgres_data:/var/lib/postgresql/data/
+    ports:
+      - "5432:5432"
     environment:
       POSTGRES_PASSWORD: postgres
       POSTGRES_USER: postgres
       POSTGRES_DB: italgold
-    networks:
-      internal_net:
-        ipv4_address: 172.30.1.7
 
 volumes:
   postgres_data:
-
-networks:
-  internal_net:
-    ipam:
-      driver: default
-      config:
-        - subnet: 172.30.0.0/16
